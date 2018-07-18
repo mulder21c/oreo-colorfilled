@@ -1,0 +1,7 @@
+{
+  "extends": "stylelint-config-sass-guidelines",
+  "rules": {
+    "function-url-quotes": "never",
+    "order/properties-alphabetical-order": null
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "name": "oreo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "npm list gulp -g || npm install gulp -g"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mulder21c/oreo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mulder21c/oreo/issues"
+  },
+  "homepage": "https://github.com/mulder21c/oreo#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "clipboard": "^2.0.1",
+    "del": "^3.0.0",
+    "eslint": "^4.19.1",
+    "eslint-plugin-requirejs": "^3.2.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-babel": "^7.0.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-replace": "^1.0.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-sync": "^0.1.4",
+    "gulp-uglify": "^3.0.0",
+    "gulp-wait": "0.0.2",
+    "gulp-webserver": "^0.9.1",
+    "gulp.spritesmith": "^6.9.0",
+    "merge-stream": "^1.0.1",
+    "stylelint": "^9.3.0",
+    "stylelint-config-sass-guidelines": "^5.0.0"
+  },
+  "dependencies": {
+    "requirejs": "^2.3.5"
+  }
+}
