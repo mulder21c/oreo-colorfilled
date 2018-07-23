@@ -81,9 +81,13 @@ gulp.task('libs', () => {
 });
 
 gulp.task('js-vender', () => {
-  return gulp.src(['node_modules/requirejs/require.js'])
-    .pipe(concat('vender.js'))
+  return gulp.src([
+      'node_modules/clipboard/dist/clipboard.js',
+      'node_modules/lodash/lodash.js',
+      'node_modules/requirejs/require.js'
+    ])
     .pipe(uglify())
+    .pipe(concat('vender.js'))
     .pipe(gulp.dest('./dist/js'));
 });
 
@@ -96,7 +100,6 @@ gulp.task('js-entry', () => {
         }
       }]]
     }))
-    //.pipe(concat('app.js'))
     .pipe(gulp.dest('./dist/js'));
 });
 

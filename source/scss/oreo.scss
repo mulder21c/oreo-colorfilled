@@ -1,0 +1,15 @@
+@import 'libraries/fontawesome/fontawesome';
+@import 'libraries/fontawesome/solid';
+
+@import 'helpers/mixin';
+
+@import 'modules/variables';
+@import 'modules/functions';
+@import 'modules/placeholder';
+@import 'modules/reset';
+
+@import 'partials/typography';
+@import 'partials/layout';
+@import 'partials/elements';
+
+@import 'views/home';

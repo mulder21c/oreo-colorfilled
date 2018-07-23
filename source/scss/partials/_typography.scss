@@ -1,0 +1,14 @@
+$text-color: lighten($black, (100% - 87%));
+
+@include font-face ($base-font, $web-font-path, $ns-light-name, $base-light-weight);
+@include font-face ($base-font, $web-font-path, $ns-regular-name, $base-regular-weight);
+@include font-face ($base-font, $web-font-path, $ns-bold-name, $base-bold-weight);
+@include font-face ($base-font, $web-font-path, $ns-extra-bold-name, $base-extra-bold-weight);
+
+body {
+  @include base-font-style;
+}
+
+a {
+  text-decoration: none;
+}

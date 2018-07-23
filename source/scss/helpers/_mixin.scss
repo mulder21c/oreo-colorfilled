@@ -1,0 +1,41 @@
+@mixin layout-height-100percent ($header_selector, $footer_selector, $container_selector) {
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    display: table;
+    width: 100%;
+    height: 100%;
+  }
+
+  #{$header-selector},
+  #{$footer-selector} {
+    display: table-row;
+    width: 100%;
+    height: 1px;
+  }
+
+  #{$container-selector} {
+    display: table-row;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@mixin font-face ($name, $path, $filename, $weight: 400) {
+  @font-face {
+    font-family: $name;
+    src: url('#{$path}#{$filename}.eot');
+    src: url('#{$path}#{$filename}.eot?#iefix') format('embedded-opentype'),
+      url('#{$path}#{$filename}.woff') format('woff'),
+      url('#{$path}#{$filename}.ttf') format('truetype');
+    font-weight: $weight;
+  }
+}
+
+@mixin base-font-style {
+  font: #{$base-text-size}/#{$base-line-height} $base-font-family;
+  color: $text-color;
+}

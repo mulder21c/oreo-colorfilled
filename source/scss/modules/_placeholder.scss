@@ -1,0 +1,41 @@
+%background-oreo-pattern {
+  background-color: transparent;
+  background-image: url($oreo-pattern-image);
+  background-repeat: $oreo-pattern-repeat;
+  background-position: $oreo-pattern-position;
+}
+
+%awning {
+  background: $awning-background;
+}
+
+%clearfix {
+  &::after {
+    content: '';
+    overflow: hidden;
+    clear: both;
+    display: table;
+    height: 0;
+  }
+}
+
+%button {
+  overflow: hidden;
+  box-sizing: border-box;
+  background-color: transparent;
+  display: inline-block;
+  border: 0;
+  padding: 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+%accessible-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: 1px;
+  height: 1px;
+}

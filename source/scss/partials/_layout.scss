@@ -1,0 +1,31 @@
+@include layout-height-100percent('.header', '.footer', '.container');
+
+body {
+  @extend %background-oreo-pattern;
+}
+
+.accessible-hidden {
+  @extend %accessible-hidden;
+}
+
+.inner {
+  margin: 0 auto;
+  width: $base-width;
+}
+
+.page-controller {
+  margin-bottom: $base-space-between-component-top;
+  text-align: center;
+}
+
+.footer {
+  background-color: $light-primary-color;
+
+  .inner {
+    background-image: url($foot-logo-image);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-color: $light-primary-color;
+    height: $foot-height;
+  }
+}

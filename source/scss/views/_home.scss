@@ -1,0 +1,15 @@
+.step1-container {
+  margin-top: $logo-origin-height + $base-space-between-component-top;
+}
+
+.subject {
+  font-size: $big-text-size;
+  font-weight: $base-regular-weight;
+  color: $primary-color;
+  text-align: center;
+
+  > strong,
+  > b {
+    font-weight: $base-extra-bold-weight;
+  }
+}

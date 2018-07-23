@@ -1,0 +1,63 @@
+$white: #fff;
+$black: #000;
+$gray: lighten($black, 80%);
+
+$base-font: 'NanumSquare';
+$base-font-family: $base-font, sans-serif;
+$base-text-size: 16px;
+$big-text-size: 26px;
+$base-line-height: 1.6;
+$base-light-weight: 200;
+$base-regular-weight: 400;
+$base-bold-weight: 600;
+$base-extra-bold-weight: 800;
+$base-transition-duration: 0.7s;
+$base-width: 980px;
+$base-space-between-component-top: 20px;
+
+$z-index-level-1: 1;
+$z-index-level-2: 100;
+$z-index-level-3: 200;
+$z-index-level-4: 300;
+$z-index-level-5: 400;
+$z-index-level-6: 500;
+$z-index-level-7: 600;
+$z-index-level-8: 700;
+$z-index-level-9: 800;
+$z-index-level-10: 900;
+
+$web-font-path: '/libs/fonts/';
+$ns-light-name: 'NanumSquareL';
+$ns-regular-name: 'NanumSquareR';
+$ns-bold-name: 'NanumSquareB';
+$ns-extra-bold-name: 'NanumSquareEB';
+
+$primary-color: #2e8de5;
+$light-primary-color: #74d1f3;
+$accent-color: #ff467e;
+$light-accent-color: lighten($accent-color, 15%);
+
+$primary-button-width: 170px;
+$primary-button-height: 35px;
+$primary-button-text-size: 20px;
+
+$oreo-pattern-image: '/images/pattern-oreo.jpg';
+$oreo-pattern-repeat: repeat;
+$oreo-pattern-position: center top;
+
+$awning-height: 132px;
+$awning-images: '/images/bg-awning.png';
+$awning-background: transparent url($awning-images) repeat-x center 0;
+
+$foot-logo-image: '/images/foot-logo.png';
+$foot-height: 175px;
+$foot-notice-width: 550px;
+$foot-notice-top-space: 50px;
+
+$logo-image: '/images/oreo-colorfilled-logo.png';
+$logo-origin-width: 510px;
+$logo-origin-height: 70px;
+
+$canvas-padding: 10px;
+$canvas-width: 640px;
+$canvas-height: 437px;

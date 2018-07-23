@@ -1,0 +1,122 @@
+.awning {
+  @extend %awning;
+
+  .inner {
+    height: $awning-height;
+  }
+}
+
+.btn {
+  @extend %button;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto;
+  width: $logo-origin-width;
+  transform: translate(0, $awning-height);
+}
+
+.canvas-container {
+  background-color: $white;
+  margin: $base-space-between-component-top auto;
+  padding: $canvas-padding;
+  border: 1px solid $gray;
+  width: $canvas-width;
+  height: $canvas-height;
+}
+
+.slider-container {
+  position: relative;
+  overflow: hidden;
+
+  .slider-inner {
+    @extend %clearfix;
+    width: 1000%;
+    transition: all $base-transition-duration;
+  }
+
+  .slider-item {
+    float: left;
+  }
+
+  .btn-prev,
+  .btn-next {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%) scale(0.6, 1);
+    font-size: 6rem;
+    color: $white;
+    filter: drop-shadow(2px 2px 4px $black);
+    text-shadow: 1px 1px 2px $black;
+    opacity: 0.75;
+    z-index: $z-index-level-1;
+
+    &.disable{
+      cursor: default;
+    }
+
+    &:not(.disable):focus,
+    &:not(.disable):hover {
+      opacity: 1;
+      color: $accent-color;
+    }
+  }
+
+  .btn-prev {
+    @extend .fas;
+    @include fa-icon;
+    left: 0;
+
+    &::before {
+      content: fa-content($fa-var-chevron-left);
+    }
+  }
+
+  .sr-notation {
+    @extend %accessible-hidden;
+  }
+
+  .btn-next {
+    @extend .fas;
+    @include fa-icon;
+    right: 0;
+
+    &::before {
+      content: fa-content($fa-var-chevron-right);
+    }
+  }
+}
+
+.btn-primary {
+  @extend %button;
+  border-radius: $primary-button-height / 5;
+  border: 1px solid darken($primary-color, 8%);
+  background-color: $primary-color;
+  width: $primary-button-width;
+  height: $primary-button-height;
+  line-height: $primary-button-height;
+  font-size: $primary-button-text-size;
+  font-weight: 700;
+  color: $white;
+  text-transform: uppercase;
+
+  &:hover,
+  &:focus {
+    border-color: darken($accent-color, 8%);
+    background-color: $accent-color;
+  }
+}
+
+.delivery-notice {
+  padding: $foot-notice-top-space 0 0;
+  width: $foot-notice-width;
+  font-size: $base-text-size;
+  text-transform: uppercase;
+  color: $white;
+
+  > span {
+    display: inline-block;
+    width: 100%;
+  }
+}
