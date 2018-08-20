@@ -1,5 +1,5 @@
 define(() => {
-  const tag = '[StepTiteModel]';
+  const tag = '[StepTitleModel]';
   return {
     data: {
       step0: '',

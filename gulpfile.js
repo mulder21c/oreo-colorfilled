@@ -44,12 +44,19 @@ gulp.task('scss', () => {
     .pipe(livereload());
 });
 
-gulp.task('images', () => {
-  return gulp.src(['source/images/**/*'])
+gulp.task('images:dev', () => {
+  return gulp.src(['source/images/**/*.*'])
+    .pipe(gulp.dest('./dist/images'))
+    .pipe(livereload());
+});
+
+gulp.task('images:build', () => {
+  return gulp.src(['source/images/**/*.*'])
     .pipe(imagemin([
       imagemin.gifsicle({ interlaced: true }),
       imagemin.jpegtran({ progressive: true }),
-      imagemin.optipng({ optimizationLevel: 5 })
+      imagemin.optipng({ optimizationLevel: 5 }),
+      imagemin.svgo()
     ]))
     .pipe(gulp.dest('./dist/images'))
     .pipe(livereload());
@@ -84,7 +91,8 @@ gulp.task('js-vender', () => {
   return gulp.src([
       'node_modules/clipboard/dist/clipboard.js',
       'node_modules/lodash/lodash.js',
-      'node_modules/requirejs/require.js'
+      'node_modules/requirejs/require.js',
+      'node_modules/nodelist-foreach-polyfill/index.js'
     ])
     .pipe(uglify())
     .pipe(concat('vender.js'))
@@ -121,9 +129,10 @@ gulp.task('watch', () => {
   gulp.watch(['source/css/**/*'], ['css']);
   gulp.watch(['source/scss/**/*'], ['scss']);
   gulp.watch(['source/libs/**/*'], ['libs']);
-  gulp.watch(['source/images/**/*'], ['images']);
+  gulp.watch(['source/images/**/*'], ['images:dev']);
   gulp.watch(['source/js/**/*'], ['js']);
   gulp.watch(['source/sprite/**/*'], ['sprite']);
 });
 
-gulp.task('default', gulpsync.sync(['html', 'css', 'scss', 'libs', 'sprite', 'images', 'js', 'watch', 'webserver']));
+gulp.task('default', gulpsync.sync(['html', 'css', 'scss', 'libs', 'sprite', 'images:dev', 'js', 'watch', 'webserver']));
+gulp.task('build', gulpsync.sync(['clean', 'html', 'css', 'scss', 'libs', 'sprite', 'images:build', 'js']));

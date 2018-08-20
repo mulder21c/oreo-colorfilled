@@ -13,3 +13,136 @@
     font-weight: $base-extra-bold-weight;
   }
 }
+
+.oreo-introduce,
+.select-design {
+  .btn-prev,
+  .btn-next {
+    @extend .fas;
+    @include fa-icon;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%) scale(0.6, 1);
+    font-size: 6rem;
+    color: $white;
+    filter: drop-shadow(2px 2px 4px $black);
+    text-shadow: 1px 1px 2px $black;
+    opacity: 0.75;
+    z-index: $z-index-level-1;
+
+    &.disable {
+      cursor: default;
+    }
+
+    &:not(.disable):focus,
+    &:not(.disable):hover {
+      opacity: 1;
+      color: $accent-color;
+    }
+  }
+
+  .btn-prev {
+    left: 0;
+
+    &::before {
+      content: fa-content($fa-var-chevron-left);
+    }
+  }
+
+  .btn-next {
+    right: 0;
+
+    &::before {
+      content: fa-content($fa-var-chevron-right);
+    }
+  }
+}
+
+.select-design {
+  .slide-controller {
+    position: relative;
+    margin: 50px auto 100px;
+    width: 640px;
+  }
+
+  .slide-indicators {
+    list-style-type: none;
+    display: flex;
+
+    &.clickable-indicator {
+      .slide-indicator {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .slide-indicator {
+    flex: 1;
+    text-align: center;
+    transform: scale(0.8);
+    opacity: 0.35;
+    transition: 0.4s;
+
+    &.active {
+      opacity: 1;
+      transform: scale(1.15);
+    }
+
+    > img {
+      width: 90%;
+      vertical-align: top;
+    }
+  }
+
+  .btn-prev {
+    left: -0.75em;
+    font-size: 5rem;
+  }
+
+  .btn-next {
+    right: -0.75em;
+    font-size: 5rem;
+  }
+}
+
+.design-guide {
+  position: absolute;
+  margin-top: 2rem;
+  margin-left: -10%;
+  width: 120%;
+  font-size: em(22px);
+  font-weight: $base-bold-weight;
+  text-transform: uppercase;
+  text-align: center;
+  color: lighten($black, 25%);
+
+  > p {
+    display: none;
+
+    > span {
+      @extend %accessible-hidden;
+      display: inline-block;
+      margin: -1px 0 0 -1px;
+    }
+  }
+
+  &[data-index='0'] > p:first-child {
+    display: block;
+  }
+
+  &[data-index='1'] > p:nth-child(2) {
+    display: block;
+  }
+
+  &[data-index='2'] > p:nth-child(3) {
+    display: block;
+  }
+
+  &[data-index='3'] > p:nth-child(4) {
+    display: block;
+  }
+
+  &[data-index='4'] > p:nth-child(5) {
+    display: block;
+  }
+}

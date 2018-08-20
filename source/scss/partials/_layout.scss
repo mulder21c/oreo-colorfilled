@@ -16,6 +16,15 @@ body {
 .page-controller {
   margin-bottom: $base-space-between-component-top;
   text-align: center;
+
+  button,
+  a {
+    margin: 0 0.5em;
+
+    &:only-child {
+      margin: 0;
+    }
+  }
 }
 
 .footer {

@@ -1,6 +1,5 @@
 define(() => {
   const tag = '[SliderView]';
-
   const defaults = {
     el: null,
     wrapperSelector: '.slider-inner',
@@ -13,8 +12,13 @@ define(() => {
     startIdx: 0,
     useController: true,
     useIndicator: false,
-    useSRNotation: false
+    useSRNotation: false,
+    canClickIndicator: false,
+    callback: null
   };
+
+  let clickEvtDelegate;
+  let keyEvtDelegate;
 
   function SliderView (settings) {
     this.init(settings);
@@ -23,103 +27,111 @@ define(() => {
 
   SliderView.prototype = {
     init (settings) {
-      let me = this;
-      me.settings = _.extend(defaults, settings);
+      this.settings = _.extend({}, defaults, settings);
 
-      if(!me.settings.el) throw new Error(tag, 'el is not defined or wrong!');
-      me.el = document.querySelector(me.settings.el);
-      if(!me.el) throw new Error(tag, 'the element is absent!', 'selector : ' + me.el);
+      if(!this.settings.el) throw new Error(tag, 'el is not defined or wrong!');
+      this.el = document.querySelector(this.settings.el);
+      if(!this.el) throw new Error(tag, 'the element is absent!', 'selector : ' + this.el);
 
-      me.sliderWrapper = me.el.querySelector(me.settings.wrapperSelector);
-      me.slideItems = me.el.querySelectorAll(me.settings.itemSelector);
-      me.indicators = me.el.querySelector(me.settings.indicatorSelector);
-      me.controller = me.el.querySelector(me.settings.controllerSelector);
-      me.srNotation = me.el.querySelector('.sr-notation');
-      me.btnNext = me.el.querySelector(me.settings.btnNextSelector);
-      me.btnPrev = me.el.querySelector(me.settings.btnPrevSelector);
-      me.animateId = null;
-      me.lastControlEl = me.settings.useController ? me.useIndicator ? me.indicators[me.indicators.length - 1] : me.btnNext : null;
+      this.sliderWrapper = this.el.querySelector(this.settings.wrapperSelector);
+      this.slideItems = this.el.querySelectorAll(this.settings.itemSelector);
+      this.indicators = this.el.querySelectorAll(this.settings.indicatorSelector);
+      this.controller = this.el.querySelector(this.settings.controllerSelector);
+      this.srNotation = this.el.querySelector('.sr-notation');
+      this.btnNext = this.el.querySelector(this.settings.btnNextSelector);
+      this.btnPrev = this.el.querySelector(this.settings.btnPrevSelector);
+      this.activeClass = this.settings.activeClass;
+      this.animateId = null;
 
-      if(!me.sliderWrapper)
-        throw new Error(tag, 'The slider wrapper is absent!', 'selector : ' + me.settings.wrapperSelector);
-      if(!me.slideItems|| !me.slideItems.length)
-        throw new Error(tag, 'The slider Items is absent!', 'selector : ' + me.settings.itemSelector);
-      if(me.settings.useIndicator && !me.indicators.length)
-        throw new Error(tag, 'The indicators is absent!', 'selector : ' + me.settings.indicatorSelector);
-      if(me.settings.useSRNotation && !me.srNotation)
+      if(!this.sliderWrapper)
+        throw new Error(tag, 'The slider wrapper is absent!', 'selector : ' + this.settings.wrapperSelector);
+      if(!this.slideItems|| !this.slideItems.length)
+        throw new Error(tag, 'The slider Items is absent!', 'selector : ' + this.settings.itemSelector);
+      if(this.settings.useIndicator && !this.indicators.length)
+        throw new Error(tag, 'The indicators is absent!', 'selector : ' + this.settings.indicatorSelector);
+      if(this.settings.useSRNotation && !this.srNotation)
         throw new Error(tag, 'The notation element for SR is absent!');
-      if(!me.settings.useSRNotation && me.srNotation)
-        me.srNotation.parentElement.removeChild(me.srNotation);
+      if(!this.settings.useSRNotation && this.srNotation)
+        this.srNotation.parentElement.removeChild(this.srNotation);
 
-      if(me.settings.startIdx < 0 || me.settings.startIdx > me.slideItems.length - 1)
-        throw new Error(tag, 'The Start Index must be in 0 ~ ' + me.slideItems.length);
+      if(this.settings.startIdx < 0 || this.settings.startIdx > this.slideItems.length - 1)
+        throw new Error(tag, 'The Start Index must be in 0 ~ ' + this.slideItems.length);
       else
-        me.activatedIdx = Number(me.settings.startIdx);
+        this.activatedIdx = Number(this.settings.startIdx);
 
-      me.slideItemWidth = me.slideItems[0].clientWidth;
+      if(this.settings.canClickIndicator)
+        this.indicators[0].parentElement.classList.add('clickable-indicator');
 
-      if(me.settings.useController) {
-        me.nextSlide = me.nextSlide.bind(me);
-        me.prevSlide = me.prevSlide.bind(me);
-        if(me.btnNext) me.btnNext.addEventListener('click', me.nextSlide, false);
-        if(me.btnPrev) me.btnPrev.addEventListener('click', me.prevSlide, false);
+      this.slideItemWidth = this.slideItems[0].clientWidth;
+
+      this.bindClickEvent();
+      this.bindKeyEvent();
+
+      if(this.settings.callback){
+        this.settings.callback = this.settings.callback.bind(this);
+        this.el.addEventListener('animated', this.settings.callback, false);
       }
 
-      me.bindKeyEvent();
-      me.goSlide(me.activatedIdx);
-      return me;
+      this.goSlide(this.activatedIdx);
+
+      return this;
     },
     destroy () {
-      console.log('destroy')
+      this.el.removeEventListener('click', keyEvtDelegate, false);
+      this.el.removeEventListener('click', clickEvtDelegate, false);
       return this;
     },
     prevSlide () {
-      let me = this;
-      me.btnNext.classList.remove('disable');
-      if (--me.activatedIdx < 0) {
-        me.activatedIdx = 0;
-        return me;
+      this.btnNext.classList.remove('disable');
+      if (--this.activatedIdx < 0) {
+        this.activatedIdx = 0;
+        return this;
       }
-      me.animateId = requestAnimationFrame(() => {
-        me.animate(me.slideItemWidth * me.activatedIdx * -1);
-        me.updateSRNotation(me.activatedIdx);
-        me.updateSlideState(me.activatedIdx);
-        if (me.activatedIdx === 0)
-          me.btnPrev.classList.add('disable');
+      this.slideItemWidth = this.slideItemWidth || this.slideItems[0].clientWidth;
+      this.animateId = requestAnimationFrame(() => {
+        this.animate(this.slideItemWidth * this.activatedIdx * -1);
+        if (this.activatedIdx === 0)
+          this.btnPrev.classList.add('disable');
+        this.updateSRNotation(this.activatedIdx);
+        this.updateSlideState(this.activatedIdx);
+        this.updateIndicatorState(this.activatedIdx);
       });
-      return me;
+      return this;
     },
     nextSlide () {
-      let me = this;
-      me.btnPrev.classList.remove('disable');
-      if(++me.activatedIdx > me.slideItems.length - 1){
-        me.activatedIdx = me.slideItems.length - 1;
-        return me;
+      this.btnPrev.classList.remove('disable');
+      if(++this.activatedIdx > this.slideItems.length - 1){
+        this.activatedIdx = this.slideItems.length - 1;
+        return this;
       }
-      me.animateId = requestAnimationFrame(() => {
-        me.animate(me.slideItemWidth * me.activatedIdx * -1);
-        me.updateSRNotation(me.activatedIdx);
-        me.updateSlideState(me.activatedIdx);
-        if (me.activatedIdx === me.slideItems.length - 1)
-          me.btnNext.classList.add('disable');
+      this.slideItemWidth = this.slideItemWidth || this.slideItems[0].clientWidth;
+      this.animateId = requestAnimationFrame(() => {
+        this.animate(this.slideItemWidth * this.activatedIdx * -1);
+        if (this.activatedIdx === this.slideItems.length - 1)
+          this.btnNext.classList.add('disable');
+        this.updateSRNotation(this.activatedIdx);
+        this.updateSlideState(this.activatedIdx);
+        this.updateIndicatorState(this.activatedIdx);
       });
-      return me;
+      return this;
     },
     goSlide (idx) {
-      let me = this;
-      if(idx > me.slideItems.length - 1 || idx < 0 ){
-        return me;
+      if(idx > this.slideItems.length - 1 || idx < 0 ){
+        return this;
       }
-      me.btnPrev.classList.remove('disable');
-      me.btnNext.classList.remove('disable');
-      me.animateId = requestAnimationFrame(() => {
-        me.animate(me.slideItemWidth * idx * -1);
-        me.updateSRNotation(idx);
-        me.updateSlideState(idx);
+      this.btnPrev.classList.remove('disable');
+      this.btnNext.classList.remove('disable');
+      this.slideItemWidth = this.slideItemWidth || this.slideItems[0].clientWidth;
+      this.animateId = requestAnimationFrame(() => {
+        this.animate(this.slideItemWidth * idx * -1);
+        this.updateSRNotation(idx);
+        this.updateSlideState(idx);
+        this.updateIndicatorState(idx);
         if (idx === 0)
-          me.btnPrev.classList.add('disable');
-        if (idx === me.slideItems.length - 1)
-          me.btnNext.classList.add('disable');
+          this.btnPrev.classList.add('disable');
+        if (idx === this.slideItems.length - 1)
+          this.btnNext.classList.add('disable');
+        this.activatedIdx = idx;
       });
       return this;
     },
@@ -130,6 +142,9 @@ define(() => {
       this.sliderWrapper.style.OTransform = 'translate(' + amount + 'px, 0)';
       this.sliderWrapper.style.WebkitTransform = 'translate(' + amount + 'px, 0)';
       this.sliderWrapper.style.transform = 'translate(' + amount + 'px, 0)';
+      this.sliderWrapper.addEventListener('transitionend', () => {
+        this.emit('animated');
+      }, false);
     },
     getActivatedIdx () {
       return this.activatedIdx;
@@ -154,38 +169,110 @@ define(() => {
         }
       });
     },
-    bindKeyEvent () {
-      const focusToPannel = ((event) => {
-        event = event || window.event;
-        const el = event.currentTarget;
-        const keycode = event.keyCode || event.which;
-
-        if(keycode === 9 & !event.shiftKey) {
-          event.preventDefault();
-          this.slideItems[this.activatedIdx].focus();
+    updateIndicatorState (newIdx) {
+      _.forEach(this.indicators, (item, idx) => {
+        if (idx !== newIdx){
+          item.classList.remove(this.activeClass);
+          item.removeAttribute('tabindex');
+          item.setAttribute('aria-selected', 'false');
+        } else {
+          item.classList.add(this.activeClass);
+          item.setAttribute('tabindex', '-1');
+          item.focus();
+          item.setAttribute('aria-selected', 'true');
         }
       });
-
-      const triggingController = ((event) => {
+    },
+    bindKeyEvent () {
+      keyEvtDelegate = (event) => {
         event = event || window.event;
-        const el = event.currentTarget;
+        let el = event.target || event.srcElement;
         const keycode = event.keyCode || event.which;
 
-        switch (keycode) {
-          case 37:
+        do {
+          if (el === this.btnNext && keycode === 9 && !event.shiftKey) {
             event.preventDefault();
-            this.prevSlide();
+            event.stopPropagation();
+            if (this.settings.useIndicator)
+              this.indicators[this.activatedIdx].focus();
+            else
+              this.slideItems[this.activatedIdx].focus();
+          } else if (this.settings.useIndicator && el === this.indicators[0].parentElement) {
+            switch (keycode) {
+              case 9:
+                event.preventDefault();
+                event.stopPropagation();
+                if (event.shiftKey)
+                  this.btnNext.focus();
+                else
+                  this.slideItems[this.activatedIdx].focus();
+                break;
+              case 37:
+                event.preventDefault();
+                event.stopPropagation();
+                this.prevSlide();
+                break;
+              case 39:
+                event.preventDefault();
+                event.stopPropagation();
+                this.nextSlide();
+                break;
+            }
+          } else if (el === this.sliderWrapper && keycode === 9 && event.shiftKey) {
+            event.preventDefault();
+            event.stopPropagation();
+            if (this.settings.useIndicator)
+              this.indicators[this.activatedIdx].focus();
+            else
+              this.btnNext.focus();
+          } else if (el === this.el) {
             break;
-          case 39:
-            event.preventDefault();
+          }
+        } while (el = el.parentElement);
+      };
+
+      this.el.addEventListener('keydown', keyEvtDelegate, false);
+      return this;
+    },
+    bindClickEvent () {
+      clickEvtDelegate = (event) => {
+        event = event || window.event;
+        let el = event.target || event.srcElement;
+
+        do {
+          //console.log(el)
+          if (this.settings.useController && el === this.btnNext) {
             this.nextSlide();
             break;
-        }
-      });
+          } else if (this.settings.useController && el === this.btnPrev) {
+            this.prevSlide();
+            break;
+          } else if (this.settings.canClickIndicator && el.matches(this.settings.indicatorSelector)) {
+            let idx = _.indexOf(this.indicators, el);
+            this.goSlide(idx);
+            break;
+          }
 
-      this.controller.addEventListener('keydown', triggingController, false);
-      if (this.lastControlEl)
-        this.lastControlEl.addEventListener('keydown', focusToPannel , false);
+          else if (el === this.el) {
+            break;
+          }
+        } while (el = el.parentElement);
+      };
+
+      this.el.addEventListener('click', clickEvtDelegate, false);
+      return this;
+    },
+    emit (event) {
+      let evt;
+
+      if (typeof window.CustomEvent === 'function') {
+        evt = new CustomEvent(event, {detail: {currIndex: this.activatedIdx}});
+      } else {
+        evt = document.createEvent('CustomEvent');
+        evt.initCustomEvent(event, false, false, {detail: {currIndex: this.activatedIdx}});
+      }
+
+      this.el.dispatchEvent(evt);
       return this;
     }
   };
