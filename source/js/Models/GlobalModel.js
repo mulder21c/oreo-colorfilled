@@ -5,7 +5,7 @@ define(() => {
     data: {
       page: 0,
       selectedDesign: null,
-      selectedColor: []
+      selectedColor: null
     },
     getPage () {
       return this.data.page;

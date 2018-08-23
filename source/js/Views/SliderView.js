@@ -31,7 +31,7 @@ define(() => {
 
       if(!this.settings.el) throw new Error(tag, 'el is not defined or wrong!');
       this.el = document.querySelector(this.settings.el);
-      if(!this.el) throw new Error(tag, 'the element is absent!', 'selector : ' + this.el);
+      if(!this.el) throw new Error(tag, 'the element is absent!', 'selector : ' + this.settings.el);
 
       this.sliderWrapper = this.el.querySelector(this.settings.wrapperSelector);
       this.slideItems = this.el.querySelectorAll(this.settings.itemSelector);

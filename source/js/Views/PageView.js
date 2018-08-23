@@ -24,12 +24,12 @@ define(['Views/View'], (View) => {
       document.documentElement.classList.add('sub');
     }
 
-    pages.forEach((page, idx) => {
+    _.forEach(pages, (page, idx) => {
       if(idx === number){
-        page.hidden = false;
+        page.removeAttribute('hidden');
         page.setAttribute('aria-hidden', 'false');
       }else{
-        page.hidden = true;
+        page.setAttribute('hidden', '');
         page.setAttribute('aria-hidden', 'true');
       }
     });

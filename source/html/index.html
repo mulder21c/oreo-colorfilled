@@ -116,9 +116,99 @@
             </div>
           </div>
         </div>
-        <div class="step-container">
+        <div class="step-container step3-container">
           <a id="page3"></a>
           <h2 class="sub-subject step3-subject"></h2>
+          <div class="select-color" role="application">
+            <div class="canvas-container">
+              <img alt="" class="canvas-layer color-bg" role="presentation">
+              <img alt="" class="canvas-layer color-groupa" role="presentation">
+              <img alt="" class="canvas-layer color-groupb" role="presentation">
+              <img alt="" class="canvas-layer color-groupc" role="presentation">
+              <img alt="" class="canvas-layer sketch-bg" role="presentation">
+              <img alt="" class="canvas-layer sketch-groupa" role="presentation">
+              <img alt="" class="canvas-layer sketch-groupb" role="presentation">
+              <img alt="" class="canvas-layer sketch-groupc" role="presentation">
+              <div class="coloring-accordion">
+                <div class="coloring-accordion-panel">
+                  <span class="coloring-accordion-tab active" role="heading" aria-level="3">
+                    <button id="draw-bg-legend" type="button" aria-controls="draw-bg-panel" aria-expanded="true" aria-disabled="true">배경색</button>
+                  </span>
+                  <div id="draw-bg-panel" class="color-list bg-color-list" role="group" aria-labelledby="draw-bg-legend">
+                    <input type="radio" name="draw-bg" id="draw-bg-value1" class="chk-draw-color" value="0">
+                    <label for="draw-bg-value1" class="button-color">
+                      <img src="/images/paint.svg" alt="" class="svg">
+                    </label>
+                    <input type="radio" name="draw-bg" id="draw-bg-value2" class="chk-draw-color" value="1">
+                    <label for="draw-bg-value2" class="button-color">
+                      <img src="/images/paint.svg" alt="" class="svg">
+                    </label>
+                    <input type="radio" name="draw-bg" id="draw-bg-value3" class="chk-draw-color" value="2">
+                    <label for="draw-bg-value3" class="button-color">
+                      <img src="/images/paint.svg" alt="" class="svg">
+                    </label>
+                  </div>
+                </div>
+                <div class="coloring-accordion-panel">
+                  <span class="coloring-accordion-tab" role="heading" aria-level="3">
+                    <button id="draw-groupa-legend" type="button" aria-controls="draw-groupa-panel" aria-expanded="false" aria-disabled="false">그룹A</button>
+                  </span>
+                  <div id="draw-groupa-panel" class="color-list groupa-color-list" role="group" aria-labelledby="draw-groupa-legend" hidden>
+                    <input type="radio" name="draw-groupa" id="draw-groupa-value1" class="chk-draw-color" value="0">
+                    <label for="draw-groupa-value1" class="button-color">
+                      <img src="/images/paint.svg" alt="" class="svg">
+                    </label>
+                    <input type="radio" name="draw-groupa" id="draw-groupa-value2" class="chk-draw-color" value="1">
+                    <label for="draw-groupa-value2" class="button-color">
+                      <img src="/images/paint.svg" alt="" class="svg">
+                    </label>
+                    <input type="radio" name="draw-groupa" id="draw-groupa-value3" class="chk-draw-color" value="2">
+                    <label for="draw-groupa-value3" class="button-color">
+                      <img src="/images/paint.svg" alt="" class="svg">
+                    </label>
+                  </div>
+                </div>
+                <div class="coloring-accordion-panel">
+                  <span class="coloring-accordion-tab" role="heading" aria-level="3">
+                    <button id="draw-groupb-legend" type="button" aria-controls="draw-groupb-panel" aria-expanded="false" aria-disabled="false">그룹B</button>
+                  </span>
+                  <div id="draw-groupb-panel" class="color-list groupb-color-list" role="group" aria-labelledby="draw-groupb-legend" hidden>
+                    <input type="radio" name="draw-groupb" id="draw-groupb-value1" class="chk-draw-color" value="0">
+                    <label for="draw-groupb-value1" class="button-color">
+                      <img src="/images/paint.svg" alt="" class="svg">
+                    </label>
+                    <input type="radio" name="draw-groupb" id="draw-groupb-value2" class="chk-draw-color" value="1">
+                    <label for="draw-groupb-value2" class="button-color">
+                      <img src="/images/paint.svg" alt="" class="svg">
+                    </label>
+                    <input type="radio" name="draw-groupb" id="draw-groupb-value3" class="chk-draw-color" value="2">
+                    <label for="draw-groupb-value3" class="button-color">
+                      <img src="/images/paint.svg" alt="" class="svg">
+                    </label>
+                  </div>
+                </div>
+                <div class="coloring-accordion-panel">
+                  <span class="coloring-accordion-tab" role="heading" aria-level="3">
+                    <button id="draw-groupc-legend" type="button" aria-controls="draw-groupc-panel" aria-expanded="false" aria-disabled="false">그룹C</button>
+                  </span>
+                  <div id="draw-groupc-panel" class="color-list groupc-color-list" role="group" aria-labelledby="draw-groupc-legend" hidden>
+                    <input type="radio" name="draw-groupc" id="draw-groupc-value1" class="chk-draw-color" value="0">
+                    <label for="draw-groupc-value1" class="button-color">
+                      <img src="/images/paint.svg" alt="" class="svg">
+                    </label>
+                    <input type="radio" name="draw-groupc" id="draw-groupc-value2" class="chk-draw-color" value="1">
+                    <label for="draw-groupc-value2" class="button-color">
+                      <img src="/images/paint.svg" alt="" class="svg">
+                    </label>
+                    <input type="radio" name="draw-groupc" id="draw-groupc-value3" class="chk-draw-color" value="2">
+                    <label for="draw-groupc-value3" class="button-color">
+                      <img src="/images/paint.svg" alt="" class="svg">
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="step-container">
           {{ 4 Step }}
@@ -135,7 +225,10 @@
           <button type="button" class="btn-primary prev-page">이전 단계</button>
           <button type="button" class="btn-primary next-page">다음 단계</button>
         </div>
-        <div class="page-controls step3-controls">{{ Controllers 2 }}</div>
+        <div class="page-controls step3-controls">
+          <button type="button" class="btn-primary prev-page">이전 단계</button>
+          <button type="button" class="btn-primary next-page">다음 단계</button>
+        </div>
         <div class="page-controls step4-controls">{{ Controllers 3 }}</div>
         <div class="page-controls step5-controls">{{ Controllers 4 }}</div>
       </div>

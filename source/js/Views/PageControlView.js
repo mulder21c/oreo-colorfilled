@@ -17,12 +17,12 @@ define(['Views/View'], (View) => {
   }
 
   PageControlView.onChangePage = function (page) {
-    pageControls.forEach((controls, idx) => {
+    _.forEach(pageControls, (controls, idx) => {
       if(idx === page){
-        controls.hidden = false;
+        controls.removeAttribute('hidden');
         controls.setAttribute('aria-hidden', 'false');
       }else{
-        controls.hidden = true;
+        controls.setAttribute('hidden', '');
         controls.setAttribute('aria-hidden', 'true');
       }
     });

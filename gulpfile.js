@@ -76,7 +76,7 @@ gulp.task('sprite', () => {
   const cssStream = spriteData.css
     .pipe(replace(/sprite\.png/gm, '/images/sprite.png'))
     .pipe(replace(/^\.icon-/gm, '.'))
-    .pipe(gulp.dest('./source/scss/moduels/'));
+    .pipe(gulp.dest('./source/scss/modules/'));
 
   return merge(imgStream, cssStream);
 });
@@ -89,10 +89,11 @@ gulp.task('libs', () => {
 
 gulp.task('js-vender', () => {
   return gulp.src([
-      'node_modules/clipboard/dist/clipboard.js',
+      'node_modules/es6-promise/dist/es6-promise.auto.min.js',
       'node_modules/lodash/lodash.js',
-      'node_modules/requirejs/require.js',
-      'node_modules/nodelist-foreach-polyfill/index.js'
+      'node_modules/axios/dist/axios.min.js',
+      'node_modules/clipboard/dist/clipboard.js',
+      'node_modules/requirejs/require.js'
     ])
     .pipe(uglify())
     .pipe(concat('vender.js'))

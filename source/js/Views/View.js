@@ -7,8 +7,8 @@ define(() => {
       this.el = el;
       return this;
     },
-    on (event, handler) {
-      this.el.addEventListener(event, handler);
+    on (event, handler, useCapture = false) {
+      this.el.addEventListener(event, handler, useCapture);
       return this;
     },
     emit (event, data) {

@@ -42,10 +42,11 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.1.1",
+    "axios": "^0.18.0",
     "clipboard": "^2.0.1",
     "convert-svg-to-png": "^0.4.0",
+    "es6-promise": "^4.2.4",
     "lodash": "^4.17.10",
-    "nodelist-foreach-polyfill": "^1.2.0",
     "requirejs": "^2.3.5"
   }
 }
