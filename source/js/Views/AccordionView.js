@@ -98,8 +98,8 @@ define(() => {
     },
     activate (tab) {
       const currOpenTab = _.find(this.tabs, (elem) => {return elem.parentElement.classList.contains(this.settings.activeClass)});
-      const currOpenPanel = document.querySelector(`#${currOpenTab.getAttribute('aria-controls')}`);
-      const tabPanel = document.querySelector(`#${tab.getAttribute('aria-controls')}`);
+      const currOpenPanel = this.el.querySelector(`#${currOpenTab.getAttribute('aria-controls')}`);
+      const tabPanel = this.el.querySelector(`#${tab.getAttribute('aria-controls')}`);
       if (tab === currOpenTab) return this;
 
       currOpenTab.setAttribute('aria-expanded', 'false');

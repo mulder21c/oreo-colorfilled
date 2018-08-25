@@ -80,18 +80,17 @@ define(
           case 1:
             GlobalModel.setSelectedDesign(selectedDesign);
 
-            DrawColorView.setup(document.querySelector('.select-color'))
-              .bindChangeEvent()
-              .on('@change', (event) => {this.onColorChange(event)}, false);
-
-            DrawColorView.loadDefaultSketchs(selectedDesign)
-              .setColorList(DrawColorModel.getColorList(selectedDesign));
-
             new AccordionView({
               el: '.coloring-accordion',
               tabSelector: '.coloring-accordion-tab > button',
               panelSelector: '.color-list'
             }).on('@activated', (event) => {this.onAccordionActivate(event)}, false);
+
+            DrawColorView.setup(document.querySelector('.select-color'))
+              .bindChangeEvent()
+              .on('@change', (event) => {this.onColorChange(event)}, false)
+              .loadDefaultSketchs(selectedDesign)
+              .setColorList(DrawColorModel.getColorList(selectedDesign));
 
             GlobalModel.increasePage();
             if (selectedDesign > 1)

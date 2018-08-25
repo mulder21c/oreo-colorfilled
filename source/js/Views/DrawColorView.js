@@ -9,30 +9,32 @@ define(['Views/View'], (View) => {
   }
 
   DrawColorView.loadDefaultSketchs = function (design) {
+    if (design === undefined || design === null || design > 1 ) return this;
     const imagePath = '/images/';
     const sketchPath = `ct${design + 1}_bg_0_0.svg`;
     const groupAPath = `ct${design + 1}_bg_0_1.svg`;
     const groupBPath = `ct${design + 1}_bg_0_2.svg`;
     const groupCPath = `ct${design + 1}_bg_0_3.svg`;
 
-    document.querySelector('.canvas-layer.color-bg').removeAttribute('src');
-    document.querySelector('.canvas-layer.color-groupa').removeAttribute('src');
-    document.querySelector('.canvas-layer.color-groupb').removeAttribute('src');
-    document.querySelector('.canvas-layer.color-groupc').removeAttribute('src');
-    document.querySelector('.canvas-layer.sketch-bg').src = imagePath + sketchPath;
-    document.querySelector('.canvas-layer.sketch-groupa').src = imagePath + groupAPath;
-    document.querySelector('.canvas-layer.sketch-groupb').src = imagePath + groupBPath;
-    document.querySelector('.canvas-layer.sketch-groupc').src = imagePath + groupCPath;
+    this.el.querySelector('.canvas-layer.color-bg').removeAttribute('src');
+    this.el.querySelector('.canvas-layer.color-groupa').removeAttribute('src');
+    this.el.querySelector('.canvas-layer.color-groupb').removeAttribute('src');
+    this.el.querySelector('.canvas-layer.color-groupc').removeAttribute('src');
+    this.el.querySelector('.canvas-layer.sketch-bg').src = imagePath + sketchPath;
+    this.el.querySelector('.canvas-layer.sketch-groupa').src = imagePath + groupAPath;
+    this.el.querySelector('.canvas-layer.sketch-groupb').src = imagePath + groupBPath;
+    this.el.querySelector('.canvas-layer.sketch-groupc').src = imagePath + groupCPath;
 
     this.bindChangeEvent(design);
     return this;
   }
 
   DrawColorView.setColorList = function (colorList) {
-    const bgColorLists = document.querySelectorAll('.bg-color-list [name="draw-bg"]');
-    const groupAColorLists = document.querySelectorAll('.groupa-color-list [name="draw-groupa"]');
-    const groupBColorLists = document.querySelectorAll('.groupb-color-list [name="draw-groupb"]');
-    const groupCColorLists = document.querySelectorAll('.groupc-color-list [name="draw-groupc"]');
+    if (colorList === undefined || colorList === null) return this;
+    const bgColorLists = this.el.querySelectorAll('.bg-color-list [name="draw-bg"]');
+    const groupAColorLists = this.el.querySelectorAll('.groupa-color-list [name="draw-groupa"]');
+    const groupBColorLists = this.el.querySelectorAll('.groupb-color-list [name="draw-groupb"]');
+    const groupCColorLists = this.el.querySelectorAll('.groupc-color-list [name="draw-groupc"]');
 
     axios({
       method: 'get',
@@ -123,12 +125,12 @@ define(['Views/View'], (View) => {
     const value = data.value;
 
     const imagePath = '/images/';
-    const bgImg = document.querySelector('.canvas-layer.color-bg');
-    const groupaImg = document.querySelector('.canvas-layer.color-groupa');
-    const groupbImg = document.querySelector('.canvas-layer.color-groupb');
-    const groupcImg = document.querySelector('.canvas-layer.color-groupc');
-    const sketchLayers = document.querySelectorAll('.canvas-layer[class*="sketch-"]');
-    const allChecked = document.querySelectorAll('.coloring-accordion input[type="radio"]:checked').length === 4;
+    const bgImg = this.el.querySelector('.canvas-layer.color-bg');
+    const groupaImg = this.el.querySelector('.canvas-layer.color-groupa');
+    const groupbImg = this.el.querySelector('.canvas-layer.color-groupb');
+    const groupcImg = this.el.querySelector('.canvas-layer.color-groupc');
+    const sketchLayers = this.el.querySelectorAll('.canvas-layer[class*="sketch-"]');
+    const allChecked = this.el.querySelectorAll('.coloring-accordion input[type="radio"]:checked').length === 4;
 
     switch (category) {
       case 'bg':
@@ -156,8 +158,8 @@ define(['Views/View'], (View) => {
 
   DrawColorView.highlightLayer = function (data) {
     const activated = data.tab.getAttribute('id').replace(/^draw-|-legend$/g,'');
-    const sketchLayers = document.querySelectorAll('.canvas-layer[class*="sketch-"]');
-    const allChecked = document.querySelectorAll('.coloring-accordion input[type="radio"]:checked').length === 4;
+    const sketchLayers = this.el.querySelectorAll('.canvas-layer[class*="sketch-"]');
+    const allChecked = this.el.querySelectorAll('.coloring-accordion input[type="radio"]:checked').length === 4;
 
     _.forEach(sketchLayers, (el) => {
       if(el.matches('.sketch-'+ activated))
@@ -170,7 +172,7 @@ define(['Views/View'], (View) => {
   }
 
   DrawColorView.getDrawnColor = function () {
-    const radios = document.querySelectorAll('.coloring-accordion input[type="radio"]:checked');
+    const radios = this.el.querySelectorAll('.coloring-accordion input[type="radio"]:checked');
     let data = {};
     _.forEach(radios, (el) => {
       let prop = el.getAttribute('name').replace(/draw-/g, '');
@@ -181,11 +183,10 @@ define(['Views/View'], (View) => {
   }
 
   DrawColorView.validate = function () {
-    const bgChecked = document.querySelectorAll('.coloring-accordion input[name="draw-bg"]:checked').length;
-    const groupAChecked = document.querySelectorAll('.coloring-accordion input[name="draw-groupa"]:checked').length;
-    const groupBChecked = document.querySelectorAll('.coloring-accordion input[name="draw-groupb"]:checked').length;
-    const groupCChecked = document.querySelectorAll('.coloring-accordion input[name="draw-groupc"]:checked').length;
-    let msg = '';
+    const bgChecked = this.el.querySelectorAll('.coloring-accordion input[name="draw-bg"]:checked').length;
+    const groupAChecked = this.el.querySelectorAll('.coloring-accordion input[name="draw-groupa"]:checked').length;
+    const groupBChecked = this.el.querySelectorAll('.coloring-accordion input[name="draw-groupb"]:checked').length;
+    const groupCChecked = this.el.querySelectorAll('.coloring-accordion input[name="draw-groupc"]:checked').length;
 
     if (!bgChecked) {
       alert('배경색을 채워주세요.');
