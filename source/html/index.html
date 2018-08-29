@@ -210,8 +210,26 @@
             </div>
           </div>
         </div>
-        <div class="step-container">
-          {{ 4 Step }}
+        <div class="step-container step4-container">
+          <a id="page4"></a>
+          <h2 class="sub-subject step4-subject"></h2>
+          <div class="write-message">
+            <div class="canvas-container">
+              <div class="canvas-inner">
+                <img alt="" class="canvas-layer color-bg" role="presentation">
+                <img alt="" class="canvas-layer color-groupa" role="presentation">
+                <img alt="" class="canvas-layer color-groupb" role="presentation">
+                <img alt="" class="canvas-layer color-groupc" role="presentation">
+                <img alt="" class="canvas-layer sketch" role="presentation">
+              </div>
+              <div class="write-form">
+                <label for="msg-to">To.</label>
+                <input type="text" id="msg-to" name="msg-to" class="msg-to" maxlength="6" placeholder="받는이">
+                <label for="msg-body">내용.</label>
+                <textarea name="msg-body" id="msg-body" class="msg-body" maxlength="40" placeholder="내용을 입력하세요"></textarea>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="step-container">
           {{ 5 Step }}
@@ -229,7 +247,10 @@
           <button type="button" class="btn-primary prev-page">이전 단계</button>
           <button type="button" class="btn-primary next-page">다음 단계</button>
         </div>
-        <div class="page-controls step4-controls">{{ Controllers 3 }}</div>
+        <div class="page-controls step4-controls">
+          <button type="button" class="btn-primary prev-page">이전 단계</button>
+          <button type="button" class="btn-primary next-page">완성!</button>
+        </div>
         <div class="page-controls step5-controls">{{ Controllers 4 }}</div>
       </div>
     </div>

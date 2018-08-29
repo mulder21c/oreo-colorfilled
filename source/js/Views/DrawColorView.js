@@ -42,7 +42,7 @@ define(['Views/View'], (View) => {
       responseType: 'document'
     }).then((response) => {
       let docFrag = document.createDocumentFragment();
-      docFrag.appendChild(response.data.firstElementChild);
+      docFrag.appendChild(response.data.firstChild);
 
       _.forEach(bgColorLists, (elem, idx) => {
         let colorPicker = elem.nextElementSibling;

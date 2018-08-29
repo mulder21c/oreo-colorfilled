@@ -269,7 +269,7 @@ define(() => {
         evt = new CustomEvent(event, {detail: {currIndex: this.activatedIdx}});
       } else {
         evt = document.createEvent('CustomEvent');
-        evt.initCustomEvent(event, false, false, {detail: {currIndex: this.activatedIdx}});
+        evt.initCustomEvent(event, false, false, {currIndex: this.activatedIdx});
       }
 
       this.el.dispatchEvent(evt);

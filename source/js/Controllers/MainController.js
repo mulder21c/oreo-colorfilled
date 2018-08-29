@@ -9,10 +9,12 @@ define(
     'Views/SliderView',
     'Views/PageControlView',
     'Views/DrawColorView',
-    'Views/AccordionView'
+    'Views/AccordionView',
+    'Views/WriteMessageView'
   ],
   (GlobalModel, StepTitleModel, DrawColorModel,
-    PageView, StepTitleView, SliderView, PageControlView, DrawColorView, AccordionView) => {
+    PageView, StepTitleView, SliderView, PageControlView,
+    DrawColorView, AccordionView, WriteMessageView) => {
     const tag = '[MainController]';
     let selectedDesign = 0;
     const exports = {
@@ -74,7 +76,6 @@ define(
 
         switch (GlobalModel.getPage()) {
           case 0:
-          case 3:
             GlobalModel.increasePage();
             break;
           case 1:
@@ -93,12 +94,24 @@ define(
               .setColorList(DrawColorModel.getColorList(selectedDesign));
 
             GlobalModel.increasePage();
-            if (selectedDesign > 1)
+            if (selectedDesign > 1){
+              WriteMessageView.setup(document.querySelector('.write-message'))
+              .loadSvgs(GlobalModel.getSelectedDesign(), GlobalModel.getSelectedColor());
+
               GlobalModel.increasePage();
+            }
             break;
           case 2:
             if( !DrawColorView.validate() ) return;
             GlobalModel.setSelectedColor(DrawColorView.getDrawnColor());
+            WriteMessageView.setup(document.querySelector('.write-message'))
+              .loadSvgs(GlobalModel.getSelectedDesign(), GlobalModel.getSelectedColor());
+
+            GlobalModel.increasePage();
+            break;
+          case 3:
+            GlobalModel.setPostMessage(WriteMessageView.getMessage());
+            console.log(GlobalModel.getPostMessage())
             GlobalModel.increasePage();
             break;
           default:
@@ -109,7 +122,6 @@ define(
         PageControlView.onChangePage(GlobalModel.getPage());
         StepTitleView.setup(document.querySelector(`.step${GlobalModel.getPage() + 1}-subject`))
           .setTitle(StepTitleModel.get(GlobalModel.getPage()));
-
         popedHistory = false;
       },
       onAccordionActivate (event) {

@@ -5,7 +5,8 @@ define(() => {
     data: {
       page: 0,
       selectedDesign: null,
-      selectedColor: null
+      selectedColor: {},
+      msg: {}
     },
     getPage () {
       return this.data.page;
@@ -19,17 +20,24 @@ define(() => {
       return this;
     },
     getSelectedDesign () {
-      return this.selectedDesign;
+      return this.data.selectedDesign;
     },
     getSelectedColor () {
-      return this.selectedColor;
+      return this.data.selectedColor;
+    },
+    getPostMessage () {
+      return this.data.msg;
     },
     setSelectedDesign (design) {
-      this.selectedDesign = design;
+      this.data.selectedDesign = design;
       return this;
     },
     setSelectedColor (colorList) {
-      this.selectedColor = colorList;
+      this.data.selectedColor = colorList;
+      return this;
+    },
+    setPostMessage (msg) {
+      this.data.msg = msg;
       return this;
     }
   }

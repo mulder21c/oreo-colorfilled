@@ -18,7 +18,7 @@ define(() => {
         evt = new CustomEvent(event, {detail: data});
       }else{
         evt = document.createEvent('CustomEvent');
-        evt.initCustomEvent(event, false, false, {detail: data});
+        evt.initCustomEvent(event, false, false, data);
       }
       this.el.dispatchEvent(evt);
       return this;
