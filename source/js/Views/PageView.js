@@ -16,6 +16,8 @@ define(['Views/View'], (View) => {
   }
 
   PageView.change = function (number) {
+    const placeholder = this.el.querySelector('#page' + (Number(number) + 1));
+
     if(number === 0){
       document.documentElement.classList.remove('sub');
       document.documentElement.classList.add('main');
@@ -33,6 +35,8 @@ define(['Views/View'], (View) => {
         page.setAttribute('aria-hidden', 'true');
       }
     });
+
+    placeholder.focus();
   }
 
   return PageView;

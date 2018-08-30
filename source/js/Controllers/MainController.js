@@ -25,11 +25,13 @@ define(
           event = event || window.event;
           popedHistory = true;
           let page = event.state === null ? 0 : event.state.page;
-          if(page <= GlobalModel.getPage())
+
+          if(page < GlobalModel.getPage()) {
             me.onPrevPage();
-          else{
+          }else if (page > GlobalModel.getPage()) {
             me.onNextPage();
           }
+          popedHistory = false;
         });
 
         new SliderView({
@@ -77,42 +79,48 @@ define(
           .onChangePage(0);
       },
       onPrevPage () {
+        if(GlobalModel.getPage() === 3 && GlobalModel.getSelectedDesign() > 1) {
+          GlobalModel.decreasePage();
+        }
+
         PageView.change(GlobalModel.getPage() - 1);
         PageControlView.onChangePage(GlobalModel.getPage() - 1);
 
         StepTitleView.setup(document.querySelector(`.step${GlobalModel.getPage() - 2}-subject`))
-          .setTitle(StepTitleModel.get(GlobalModel.getPage() - 1))
+          .setTitle(StepTitleModel.get(GlobalModel.getPage() - 1));
 
         GlobalModel.decreasePage();
       },
       onNextPage () {
-        if(!popedHistory) {
-          history.pushState({page: GlobalModel.getPage() + 1}, 'OREO COLOREFILLED', '?step' + (GlobalModel.getPage() + 1));
-        }
-
         switch (GlobalModel.getPage()) {
           case 0:
             GlobalModel.increasePage();
             break;
           case 1:
             GlobalModel.setSelectedDesign(selectedDesign);
-            DrawColorView.loadDefaultSketchs(selectedDesign)
-              .setColorList(DrawColorModel.getColorList(selectedDesign));
+            if(!popedHistory) {
+              DrawColorView.loadDefaultSketchs(selectedDesign)
+                .setColorList(DrawColorModel.getColorList(selectedDesign));
+            }
             GlobalModel.increasePage();
 
-            if (selectedDesign > 1){
-              WriteMessageView.initialize(GlobalModel.getSelectedDesign(), GlobalModel.getSelectedColor());
+            if (selectedDesign > 1) {
+              if(!popedHistory)
+                WriteMessageView.initialize(GlobalModel.getSelectedDesign(), GlobalModel.getSelectedColor());
               GlobalModel.increasePage();
             }
             break;
           case 2:
-            if( !DrawColorView.validate() ) return;
-            GlobalModel.setSelectedColor(DrawColorView.getDrawnColor());
-            WriteMessageView.initialize(GlobalModel.getSelectedDesign(), GlobalModel.getSelectedColor());
+            if(!popedHistory) {
+              if( !DrawColorView.validate() ) return;
+              GlobalModel.setSelectedColor(DrawColorView.getDrawnColor());
+              WriteMessageView.initialize(GlobalModel.getSelectedDesign(), GlobalModel.getSelectedColor());
+            }
             GlobalModel.increasePage();
             break;
           case 3:
-            GlobalModel.setPostMessage(WriteMessageView.getMessage());
+            if(!popedHistory)
+              GlobalModel.setPostMessage(WriteMessageView.getMessage());
             AwardOrderView.getOreoCode({
               design: GlobalModel.getSelectedDesign(),
               colors: GlobalModel.getSelectedColor(),
@@ -122,6 +130,10 @@ define(
             break;
           default:
             break;
+        }
+
+        if(!popedHistory) {
+          history.pushState({page: GlobalModel.getPage()}, 'OREO COLOREFILLED', '?step' + (GlobalModel.getPage() + 1));
         }
 
         PageView.change(GlobalModel.getPage());
