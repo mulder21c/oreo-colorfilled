@@ -10,11 +10,12 @@ define(
     'Views/PageControlView',
     'Views/DrawColorView',
     'Views/AccordionView',
-    'Views/WriteMessageView'
+    'Views/WriteMessageView',
+    'Views/AwardOrderView'
   ],
   (GlobalModel, StepTitleModel, DrawColorModel,
     PageView, StepTitleView, SliderView, PageControlView,
-    DrawColorView, AccordionView, WriteMessageView) => {
+    DrawColorView, AccordionView, WriteMessageView, AwardOrderView) => {
     const tag = '[MainController]';
     let selectedDesign = 0;
     const exports = {
@@ -30,16 +31,6 @@ define(
             me.onNextPage();
           }
         });
-
-        PageView.setup(document.querySelector('.content'))
-          .fetchPages('.step-container')
-          .change(0);
-
-        PageControlView.setup(document.querySelector('.page-controller'))
-          .fetchControls('.page-controls')
-          .on('@nextpage', (event) => {this.onNextPage()}, false)
-          .on('@prevpage', (event) => {this.onPrevPage()}, false)
-          .onChangePage(0);
 
         new SliderView({
           el: '.oreo-introduce',
@@ -59,6 +50,31 @@ define(
             selectedDesign = idx;
           }
         });
+
+        new AccordionView({
+          el: '.coloring-accordion',
+          tabSelector: '.coloring-accordion-tab > button',
+          panelSelector: '.color-list'
+        }).on('@activated', (event) => {this.onAccordionActivate(event)}, false);
+
+        DrawColorView.setup(document.querySelector('.select-color'))
+          .bindChangeEvent()
+          .on('@change', (event) => {this.onColorChange(event)}, false);
+
+        WriteMessageView.setup(document.querySelector('.write-message'));
+
+        AwardOrderView.setup(document.querySelector('.award-order'));
+
+        PageView.setup(document.querySelector('.content'))
+          .fetchPages('.step-container')
+          .change(0);
+
+        PageControlView.setup(document.querySelector('.page-controller'))
+          .fetchControls('.page-controls')
+          .on('@nextpage', (event) => {this.onNextPage()}, false)
+          .on('@prevpage', (event) => {this.onPrevPage()}, false)
+          .on('@pageChanged', (event) => {this.onPageChanged(event)}, false)
+          .onChangePage(0);
       },
       onPrevPage () {
         PageView.change(GlobalModel.getPage() - 1);
@@ -80,38 +96,28 @@ define(
             break;
           case 1:
             GlobalModel.setSelectedDesign(selectedDesign);
-
-            new AccordionView({
-              el: '.coloring-accordion',
-              tabSelector: '.coloring-accordion-tab > button',
-              panelSelector: '.color-list'
-            }).on('@activated', (event) => {this.onAccordionActivate(event)}, false);
-
-            DrawColorView.setup(document.querySelector('.select-color'))
-              .bindChangeEvent()
-              .on('@change', (event) => {this.onColorChange(event)}, false)
-              .loadDefaultSketchs(selectedDesign)
+            DrawColorView.loadDefaultSketchs(selectedDesign)
               .setColorList(DrawColorModel.getColorList(selectedDesign));
-
             GlobalModel.increasePage();
-            if (selectedDesign > 1){
-              WriteMessageView.setup(document.querySelector('.write-message'))
-              .loadSvgs(GlobalModel.getSelectedDesign(), GlobalModel.getSelectedColor());
 
+            if (selectedDesign > 1){
+              WriteMessageView.initialize(GlobalModel.getSelectedDesign(), GlobalModel.getSelectedColor());
               GlobalModel.increasePage();
             }
             break;
           case 2:
             if( !DrawColorView.validate() ) return;
             GlobalModel.setSelectedColor(DrawColorView.getDrawnColor());
-            WriteMessageView.setup(document.querySelector('.write-message'))
-              .loadSvgs(GlobalModel.getSelectedDesign(), GlobalModel.getSelectedColor());
-
+            WriteMessageView.initialize(GlobalModel.getSelectedDesign(), GlobalModel.getSelectedColor());
             GlobalModel.increasePage();
             break;
           case 3:
             GlobalModel.setPostMessage(WriteMessageView.getMessage());
-            console.log(GlobalModel.getPostMessage())
+            AwardOrderView.getOreoCode({
+              design: GlobalModel.getSelectedDesign(),
+              colors: GlobalModel.getSelectedColor(),
+              msg: GlobalModel.getPostMessage()
+            });
             GlobalModel.increasePage();
             break;
           default:
@@ -123,6 +129,13 @@ define(
         StepTitleView.setup(document.querySelector(`.step${GlobalModel.getPage() + 1}-subject`))
           .setTitle(StepTitleModel.get(GlobalModel.getPage()));
         popedHistory = false;
+      },
+      onPageChanged (event) {
+        if(event.detail.page === 4) {
+          AwardOrderView.startVideo();
+        }else{
+          AwardOrderView.stopVideo();
+        }
       },
       onAccordionActivate (event) {
         DrawColorView.highlightLayer(event.detail || {});

@@ -5,6 +5,7 @@ $gray: lighten($black, 80%);
 $base-font: 'NanumSquare';
 $base-font-family: $base-font, sans-serif;
 $base-text-size: 16px;
+$semi-big-text-size: 20px;
 $big-text-size: 26px;
 $base-line-height: 1.6;
 $base-light-weight: 200;
@@ -110,3 +111,8 @@ $msg-body-position-x: 60px;
 $msg-body-width: 170px;
 $msg-body-height: 115px;
 $msg-body-line-height: 1.7;
+
+$code-field-wrapper-width: 356px;
+$code-field-wrapper-height: 35px;
+$code-field-label-width: 150px;
+$code-field-label-height: 35px;

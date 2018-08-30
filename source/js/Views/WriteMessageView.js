@@ -8,7 +8,7 @@ define(['Views/View'], (View) => {
     return this;
   }
 
-  WriteMessageView.loadSvgs = function (design, colorList) {
+  WriteMessageView.initialize = function (design, colorList) {
     const imagePath = '/images/';
     const sketchPath = `ct${Number(design) + 1}_bg_0.svg`;
     const bgPath = `ct${Number(design) + 1}_bg_${colorList.bg}.svg`;
@@ -24,6 +24,9 @@ define(['Views/View'], (View) => {
       this.el.querySelector('.canvas-layer.color-groupb').src = imagePath + groupBPath;
       this.el.querySelector('.canvas-layer.color-groupc').src = imagePath + groupCPath;
     }
+
+    this.el.querySelector('#msg-to').value = '';
+    this.el.querySelector('#msg-body').value = '';
 
     return this;
   }

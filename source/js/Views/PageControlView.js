@@ -26,6 +26,7 @@ define(['Views/View'], (View) => {
         controls.setAttribute('aria-hidden', 'true');
       }
     });
+    this.emit('@pageChanged', {page: page});
     return this;
   }
 
