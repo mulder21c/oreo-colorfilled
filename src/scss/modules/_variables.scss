@@ -1,0 +1,17 @@
+// layout
+$container-width: 980px;
+
+// colors
+$white: #fff;
+$black: #000;
+$gray: lighten($black, 80%);
+$primary-color: #2e8de5;
+$light-primary-color: #74d1f3;
+$accent-color: #ff467e;
+$light-accent-color: lighten($accent-color, 15%);
+
+// fonts
+$text-x-large: 1.5rem;
+$text-large: 1.275rem;
+$text-small: 0.875rem;
+$text-x-small: 0.75rem;

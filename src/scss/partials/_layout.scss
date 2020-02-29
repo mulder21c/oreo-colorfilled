@@ -1,0 +1,45 @@
+html, body {
+  min-width: $container-width;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-flow: column;
+  line-height: 1.6;
+  text-size-adjust: 100%;
+  font-size: 16px;
+  background: transparent url(~Images/pattern-oreo.jpg) no-repeat center/cover ;
+  font-family: 'NanumSqure';
+}
+
+.header {
+  flex: 0 0 132px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  background: transparent url(~Images/bg-awning.png) no-repeat center bottom;
+}
+
+.footer {
+  flex: 0 0 175px;
+  margin-top: auto;
+  background-color: $light-primary-color;
+
+  &__inner {
+    max-width: 980px;
+    margin: 0 auto;
+    height: 100%;
+    background: transparent url(~Images/foot-logo.png) no-repeat right bottom;
+  }
+}
+
+.container {
+  flex: 0 0 auto;
+  &__inner {
+    max-width: 980px;
+    margin: 0 auto;
+  }
+}

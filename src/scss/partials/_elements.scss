@@ -1,0 +1,14 @@
+.footer {
+  &__notice {
+    padding-top: 50px;
+    width: 600px;
+    color: $white;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px darken($gray, 30);
+
+    > b {
+      display: inline-block;
+      width: 100%;
+    }
+  }
+}
