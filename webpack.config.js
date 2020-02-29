@@ -4,7 +4,7 @@ const htmlWebpackPlugin = require(`html-webpack-plugin`);
 module.exports = {
   mode: `development`,
   entry: {
-    "script/main": `./src/script/main.js`,
+    "script/main": `./src/scripts/main.js`,
   },
   output: {
     path: path.join(__dirname, `dist`),
@@ -15,6 +15,19 @@ module.exports = {
       {
         test: /\.html$/i,
         loader: `html-loader`,
+        options: {
+          interpolate: true,
+          esModule: false,
+        },
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        loader: `file-loader`,
+        options: {
+          outputPath: 'images',
+          name: `[hash:16].[ext]`,
+          esModule: false,
+        },
       }
     ]
   },
