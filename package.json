@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "preinstall": "npm list gulp -g || npm install gulp -g"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mulder21c/oreo.git"
@@ -23,7 +21,7 @@
     "del": "^3.0.0",
     "eslint": "^4.19.1",
     "eslint-plugin-requirejs": "^3.2.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-autoprefixer": "^5.0.0",
     "gulp-babel": "^7.0.1",
     "gulp-concat": "^2.6.1",
@@ -35,18 +33,21 @@
     "gulp-uglify": "^3.0.0",
     "gulp-wait": "0.0.2",
     "gulp-webserver": "^0.9.1",
-    "gulp.spritesmith": "^6.9.0",
+    "gulp.spritesmith": "^6.11.0",
     "merge-stream": "^1.0.1",
     "stylelint": "^9.3.0",
     "stylelint-config-sass-guidelines": "^5.0.0"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.1.1",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "clipboard": "^2.0.1",
     "convert-svg-to-png": "^0.4.0",
     "es6-promise": "^4.2.4",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.15",
     "requirejs": "^2.3.5"
+  },
+  "resolutions": {
+    "graceful-fs": "4.2.3"
   }
 }
