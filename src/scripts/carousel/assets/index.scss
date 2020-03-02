@@ -1,0 +1,23 @@
+.slides {
+  position: relative;
+  display: flex;
+  left: -100%;
+  transform: translateX(100%);
+
+  &.is-revers {
+    transform: translateX(-100%);
+  }
+
+  &.is-set {
+    transform: none;
+    transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1)
+  }
+
+  &__wrap {
+    overflow: hidden;
+  }
+
+  &__item {
+    flex: 1 0 100%;
+  }
+}

@@ -1,3 +1,21 @@
+.container {
+  &__subject {
+    font-size: $text-x-large;
+    margin: 1.5rem auto;
+    text-align: center;
+
+    &--index {
+      color: $primary-color;
+      font-weight: 400;
+
+      > em {
+        font-style: normal;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
 .footer {
   &__notice {
     padding-top: 50px;
@@ -10,5 +28,36 @@
       display: inline-block;
       width: 100%;
     }
+  }
+}
+
+.btn {
+  min-width: $canvas-width / 3;
+  display: inline-block;
+  border-radius: .5em;
+  background-color: $accent-color;
+  line-height: 3rem;
+  font-size: $text-x-large;
+  font-weight: 800;
+  color: $white;
+  text-align: center;
+
+  &:hover,
+  &:focus {
+    background-color: darken($accent-color, 30);
+  }
+}
+
+.sr-only {
+  margin:-1px;
+  padding:0;
+  clip:rect(1px, 1px, 1px, 1px);
+  clip-path:inset(50%);
+  overflow:hidden;
+  width: 1px;
+  height: 1px;
+
+  &--inline {
+    display: inline-block;
   }
 }

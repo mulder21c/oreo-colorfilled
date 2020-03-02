@@ -31,7 +31,7 @@ body {
   &__inner {
     max-width: 980px;
     margin: 0 auto;
-    height: 100%;
+    height: 175px;
     background: transparent url(~Images/foot-logo.png) no-repeat right bottom;
   }
 }
@@ -42,4 +42,12 @@ body {
     max-width: 980px;
     margin: 0 auto;
   }
+}
+
+.navigator {
+  display: flex;
+  margin: 2rem auto;
+  width: $canvas-width;
+  justify-content: space-around;
+  align-items: center;
 }

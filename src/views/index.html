@@ -10,6 +10,60 @@
   ${require('./partials/header.html')}
   <div role="main" class="container">
     <div class="container__inner">
+      <h2 class="container__subject container__subject--index">
+        <em>내가 만드는</em> 세상에서 단 하나뿐인 <b>오레오</b>
+      </h2>
+      <div class="oreo-introduce">
+        <div class="slides__wrap">
+          <div class="slides">
+            <div class="slides__item">
+              <img src="~Images/product-sample-01.jpg" alt="">
+              <p class="sr-only">
+                오레오 컬러필드는 소비자가 직접 오레오 포장 디자인을 선택하고
+                나만의 컬러와 메세ㅣ지를 채워 소중한 사람들에게 특별한 선물을 전할 수
+                있는 오레오의 스페셜 프로젝트 입니다.
+              </p>
+            </div>
+            <div class="slides__item">
+              <img src="~Images/product-sample-02.jpg" alt="">
+              <p class="sr-only">
+                만드는 방법 <br>
+                1단계: 디자인을 고르고, <br>
+                2단계: 컬러를 채운 후 <br>
+                3단계: 메시지를 담으면 <br>
+                4단계: 나만의 오레오 패키지가 완성!
+              </p>
+            </div>
+            <div class="slides__item">
+              <img
+                src="~Images/product-sample-03.jpg"
+                alt="가지런히 놓여 있는 완성된 오레오 상자들 샘플">
+            </div>
+            <div class="slides__item">
+              <img
+                src="~Images/product-sample-04.jpg"
+                alt="흩어놓은 완성된 오레오 상자들 샘플">
+            </div>
+          </div>
+        </div>
+        <div class="slides__controls">
+          <button
+            type="button"
+            class="slides__controls__prev"
+            aria-label="previous">
+            <span class="fas fa-chevron-left" aria-hidden="true"></span>
+          </button>
+          <button
+            type="button"
+            class="slides__controls__next"
+            aria-label="next">
+            <span class="fas fa-chevron-right" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+      <div class="navigator">
+        <a href="step1.html" class="btn btn--primary">Start!</a>
+      </div>
     </div>
   </div>
   ${require('./partials/footer.html')}
