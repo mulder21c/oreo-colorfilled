@@ -13,6 +13,27 @@
         font-weight: 700;
       }
     }
+
+    &--sub {
+      position: relative;
+      background: linear-gradient(135deg, #74d1f3 0%, #74d1f3 50%, #74d1f3 96%, rgba(116,209,243,0) 96%, rgba(116,209,243,0) 100%);
+      width: $canvas-width / 1.5;
+      height: $text-large * 3;
+      line-height: $text-large * 3;
+      color: $white;
+      text-shadow: 1px 1px 3px #000;
+
+      &::after {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        content: '';
+        width: 0;
+        height: 0;
+        border: 10px solid;
+        border-color: $primary-color transparent transparent $primary-color;
+      }
+    }
   }
 }
 
@@ -35,16 +56,29 @@
   min-width: $canvas-width / 3;
   display: inline-block;
   border-radius: .5em;
-  background-color: $accent-color;
   line-height: 3rem;
   font-size: $text-x-large;
   font-weight: 800;
-  color: $white;
   text-align: center;
 
-  &:hover,
-  &:focus {
-    background-color: darken($accent-color, 30);
+  &--primary {
+    background-color: $accent-color;
+    color: $white;
+
+    &:hover,
+    &:focus {
+      background-color: darken($accent-color, 30);
+    }
+  }
+
+  &--secondary {
+    background-color: darken($gray, 30);
+    color: $white;
+
+    &:hover,
+    &:focus {
+      background-color: darken($gray, 60);
+    }
   }
 }
 

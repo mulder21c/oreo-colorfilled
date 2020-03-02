@@ -1,8 +1,9 @@
 import "../scss/index.scss";
 import "./carousel/assets/index.scss";
-import "Modules/@fortawesome/fontawesome-free/scss/fontawesome.scss"
-import "Modules/@fortawesome/fontawesome-free/scss/solid.scss"
-import Carousel from './carousel';
+import "Modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
+import "Modules/@fortawesome/fontawesome-free/scss/solid.scss";
+import Carousel from './Carousel';
+import store from './Store';
 
 new Carousel({
   root: document.querySelector(`.oreo-introduce`),
@@ -11,3 +12,5 @@ new Carousel({
   prevBtn: document.querySelector(`.slides__controls__prev`),
   nextBtn: document.querySelector(`.slides__controls__next`),
 });
+
+store.clear();

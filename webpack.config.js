@@ -6,6 +6,7 @@ module.exports = {
   mode: `development`,
   entry: {
     "script/main": `./src/scripts/main.js`,
+    "script/step1": `./src/scripts/step1.js`,
   },
   output: {
     path: path.join(__dirname, `dist`),
@@ -60,6 +61,17 @@ module.exports = {
       chunks: ["script/main"],
       template: path.join(__dirname, `src/views/index.html`),
       filename: `index.html`,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+      },
+    }),
+    new htmlWebpackPlugin({
+      inject: true,
+      chunks: ["script/step1"],
+      template: path.join(__dirname, `src/views/step1.html`),
+      filename: `step1.html`,
       minify: {
         removeComments: true,
         collapseWhitespace: true,
