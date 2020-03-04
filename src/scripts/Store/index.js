@@ -16,6 +16,18 @@ const store = {
     updateStore(data);
     return data;
   },
+  setSelectedColor(colors) {
+    data = {...data, colors};
+    updateStore(data);
+    return data;
+  },
+  resetSelectedItems(items) {
+    for(let item of items) {
+      delete data[item];
+    }
+    updateStore(data);
+    return data;
+  }
 }
 
 export default store;

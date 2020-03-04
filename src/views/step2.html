@@ -11,13 +11,251 @@
   <div role="main" class="container">
     <div class="container__inner">
       <h2 class="container__subject container__subject--sub">
-        디자인을 선택하세요
+        원하는 컬러를 채워주세요
       </h2>
-      <div class="select-design">
-
+      <div class="select-color">
+        <div class="canvas__container">
+          <img
+            class="canvas__layer canvas__layer--color-bg"
+            role="presentation"
+            alt="" >
+          <img
+            class="canvas__layer canvas__layer--color-groupa"
+            role="presentation"
+            alt="" >
+          <img
+            class="canvas__layer canvas__layer--color-groupb"
+            role="presentation"
+            alt="" >
+          <img
+            class="canvas__layer canvas__layer--color-groupc"
+            role="presentation"
+            alt="" >
+          <img
+            class="canvas__layer canvas__layer--sketch-bg"
+            role="presentation"
+            alt="" >
+          <img
+            class="canvas__layer canvas__layer--sketch-groupa"
+            role="presentation"
+            alt="" >
+          <img
+            class="canvas__layer canvas__layer--sketch-groupb"
+            role="presentation"
+            alt="" >
+          <img
+            class="canvas__layer canvas__layer--sketch-groupc"
+            role="presentation"
+            alt="" >
+          <div class="coloring-accordion">
+            <div class="coloring-accordion__panel">
+                <button
+                  id="draw-bg-legend"
+                  class="coloring-accordion__tab"
+                  type="button">
+                  배경색
+                </button>
+              </span>
+              <div id="draw-bg-panel" class="coloring__list coloring__list--bg">
+                <input
+                  type="radio"
+                  name="draw-bg"
+                  id="draw-bg-value1"
+                  class="coloring__checkbox"
+                  value="1">
+                <label for="draw-bg-value1" class="coloring__button">
+                  <img
+                    svg-inline
+                    src="../assets/images/paint.svg"
+                    alt=""
+                    class="coloring__picker">
+                </label>
+                <input
+                  type="radio"
+                  name="draw-bg"
+                  id="draw-bg-value2"
+                  class="coloring__checkbox"
+                  value="2">
+                <label for="draw-bg-value2" class="coloring__button">
+                  <img
+                    svg-inline
+                    src="../assets/images/paint.svg"
+                    alt=""
+                    class="coloring__picker">
+                </label>
+                <input
+                  type="radio"
+                  name="draw-bg"
+                  id="draw-bg-value3"
+                  class="coloring__checkbox"
+                  value="3">
+                <label for="draw-bg-value3" class="coloring__button">
+                  <img
+                    svg-inline
+                    src="../assets/images/paint.svg"
+                    alt=""
+                    class="coloring__picker">
+                </label>
+              </div>
+            </div>
+            <div class="coloring-accordion__panel">
+              <button
+                id="draw-groupa-legend"
+                type="button"
+                class="coloring-accordion__tab">
+                그룹A
+              </button>
+              <div
+                id="draw-groupa-panel"
+                class="coloring__list coloring__list--groupa">
+                <input
+                  type="radio"
+                  name="draw-groupa"
+                  id="draw-groupa-value1"
+                  class="coloring__checkbox"
+                  value="1">
+                <label for="draw-groupa-value1" class="coloring__button">
+                  <img
+                    svg-inline
+                    src="../assets/images/paint.svg"
+                    alt=""
+                    class="coloring__picker">
+                </label>
+                <input
+                  type="radio"
+                  name="draw-groupa"
+                  id="draw-groupa-value2"
+                  class="coloring__checkbox"
+                  value="2">
+                <label for="draw-groupa-value2" class="coloring__button">
+                  <img
+                    svg-inline
+                    src="../assets/images/paint.svg"
+                    alt=""
+                    class="coloring__picker">
+                </label>
+                <input
+                  type="radio"
+                  name="draw-groupa"
+                  id="draw-groupa-value3"
+                  class="coloring__checkbox"
+                  value="3">
+                <label for="draw-groupa-value3" class="coloring__button">
+                  <img
+                    svg-inline
+                    src="../assets/images/paint.svg"
+                    alt=""
+                    class="coloring__picker">
+                </label>
+              </div>
+            </div>
+            <div class="coloring-accordion__panel">
+              <button
+                id="draw-groupb-legend"
+                class="coloring-accordion__tab"
+                type="button">
+                그룹B
+              </button>
+              <div
+                id="draw-groupb-panel"
+                class="coloring__list coloring__list--groupb">
+                <input
+                  type="radio"
+                  name="draw-groupb"
+                  id="draw-groupb-value1"
+                  class="coloring__checkbox"
+                  value="1">
+                <label for="draw-groupb-value1" class="coloring__button">
+                  <img
+                    svg-inline
+                    src="../assets/images/paint.svg"
+                    alt=""
+                    class="coloring__picker">
+                </label>
+                <input
+                  type="radio"
+                  name="draw-groupb"
+                  id="draw-groupb-value2"
+                  class="coloring__checkbox"
+                  value="2">
+                <label for="draw-groupb-value2" class="coloring__button">
+                  <img
+                    svg-inline
+                    src="../assets/images/paint.svg"
+                    alt=""
+                    class="coloring__picker">
+                </label>
+                <input
+                  type="radio"
+                  name="draw-groupb"
+                  id="draw-groupb-value3"
+                  class="coloring__checkbox"
+                  value="3">
+                <label for="draw-groupb-value3" class="coloring__button">
+                  <img
+                    svg-inline
+                    src="../assets/images/paint.svg"
+                    alt=""
+                    class="coloring__picker">
+                </label>
+              </div>
+            </div>
+            <div class="coloring-accordion__panel">
+              <button
+                id="draw-groupc-legend"
+                class="coloring-accordion__tab"
+                type="button">
+                그룹C
+              </button>
+              <div
+                id="draw-groupc-panel"
+                class="coloring__list coloring__list--groupc">
+                <input
+                  type="radio"
+                  name="draw-groupc"
+                  id="draw-groupc-value1"
+                  class="coloring__checkbox"
+                  value="1">
+                <label for="draw-groupc-value1" class="coloring__button">
+                  <img
+                    svg-inline
+                    src="../assets/images/paint.svg"
+                    alt=""
+                    class="coloring__picker">
+                </label>
+                <input
+                  type="radio"
+                  name="draw-groupc"
+                  id="draw-groupc-value2"
+                  class="coloring__checkbox"
+                  value="2">
+                <label for="draw-groupc-value2" class="coloring__button">
+                  <img
+                    svg-inline
+                    src="../assets/images/paint.svg"
+                    alt=""
+                    class="coloring__picker">
+                </label>
+                <input
+                  type="radio"
+                  name="draw-groupc"
+                  id="draw-groupc-value3"
+                  class="coloring__checkbox"
+                  value="3">
+                <label for="draw-groupc-value3" class="coloring__button">
+                  <img
+                    svg-inline
+                    src="../assets/images/paint.svg"
+                    alt=""
+                    class="coloring__picker">
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="navigator">
-        <a href="step1.html" class="btn btn--secondary prev-step">이전 단계</a>
+        <a href="step1.html" class="btn btn--secondary">이전 단계</a>
         <a href="step3.html" class="btn btn--primary next-step">다음 단계</a>
       </div>
     </div>

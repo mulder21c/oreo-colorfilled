@@ -7,6 +7,7 @@ module.exports = {
   entry: {
     "script/main": `./src/scripts/main.js`,
     "script/step1": `./src/scripts/step1.js`,
+    "script/step2": `./src/scripts/step2.js`,
   },
   output: {
     path: path.join(__dirname, `dist`),
@@ -16,17 +17,39 @@ module.exports = {
     rules: [
       {
         test: /\.html$/i,
-        loader: `html-loader`,
+        use: [
+          {
+            loader: `html-loader`,
+            options: {
+              interpolate: true,
+              esModule: false,
+            },
+          },
+          {
+            loader: `img-svg-inline-loader`,
+            options: {
+              svgo: null
+            }
+          }
+        ],
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        exclude: [
+          path.resolve(__dirname, `./src/assets/images/paint.svg`)
+        ],
+        loader: `file-loader`,
         options: {
-          interpolate: true,
+          outputPath: 'images',
+          name: `[hash:16].[ext]`,
           esModule: false,
         },
       },
       {
-        test: /\.(png|jpe?g|gif|svg|ttf|woff|woff2|eot)$/i,
+        test: /\.(ttf|woff|woff2|eot)$/i,
         loader: `file-loader`,
         options: {
-          outputPath: 'images',
+          outputPath: 'assets/fonts',
           name: `[hash:16].[ext]`,
           esModule: false,
         },
@@ -54,6 +77,10 @@ module.exports = {
       {
         from: `src/assets/fonts`,
         to: `assets/fonts`
+      },
+      {
+        from: `src/public/images`,
+        to: `images`
       }
     ]),
     new htmlWebpackPlugin({
@@ -72,6 +99,17 @@ module.exports = {
       chunks: ["script/step1"],
       template: path.join(__dirname, `src/views/step1.html`),
       filename: `step1.html`,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+      },
+    }),
+    new htmlWebpackPlugin({
+      inject: true,
+      chunks: ["script/step2"],
+      template: path.join(__dirname, `src/views/step2.html`),
+      filename: `step2.html`,
       minify: {
         removeComments: true,
         collapseWhitespace: true,
