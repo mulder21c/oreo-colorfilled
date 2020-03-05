@@ -1,0 +1,93 @@
+@import "helpers/mixins";
+@import "modules/variables";
+@import "modules/reset";
+@import "partials/layout";
+@import 'partials/elements';
+
+
+.canvas {
+  &__container{
+    position: relative;
+    margin: 2rem auto;
+    padding: 10px;
+    border: 1px solid $gray;
+    width: $canvas-width;
+    height: 437px;
+    background-color: $white;
+    overflow: hidden;
+
+    &--inner {
+      overflow: hidden;
+      position: relative;
+      height: 100%;
+    }
+  }
+
+  &__layer{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    max-width: 640px;
+    transform: scale(3) translate(-31.5%, 30%);
+  }
+}
+.message {
+  &__form {
+    position: absolute;
+    box-sizing: border-box;
+    top: 140px;
+    right: 40px;
+    width: 200px;
+    padding-right: 30px;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-end;
+  }
+
+  &__to--label,
+  &__body--label {
+    @include sr-only;
+    display: inline-block;
+  }
+
+  &__to {
+    box-sizing: border-box;
+    appearance: none;
+    background-color: transparent;
+    padding: 0 10px;
+    width: 120px;
+    height: 30px;
+    line-height: 30px;
+    border: 0;
+    border-bottom: 1px solid $gray;
+    font: inherit;
+    font-weight: 600;
+    text-align: left;
+  }
+  &__body {
+    overflow: hidden;
+    appearance: none;
+    background-color: transparent;
+    background: linear-gradient(transparent 26.4px, gray 26.4px, gray 27.4px, transparent 27.4px),
+      linear-gradient(transparent 52.8px, gray 52.8px, gray 53.8px, transparent 53.8px),
+      linear-gradient(transparent 79.2px, gray 79.2px, gray 80.2px, transparent 80.2px),
+      linear-gradient(transparent 105.6px, gray 105.6px, gray 106.6px, transparent 106.6px);
+    margin-top: 10px;
+    border: 0;
+    width: 165px;
+    height: 103px;
+    line-height: 1.7rem;
+    font: inherit;
+    font-weight: 600;
+    text-align: left;
+  }
+}
+
+.navigator {
+  justify-content: space-between;
+  width: 640px + 20px;
+
+  .btn {
+    flex: 0.4 0 auto;
+  }
+}

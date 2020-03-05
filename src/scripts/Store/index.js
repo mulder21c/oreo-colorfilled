@@ -21,6 +21,11 @@ const store = {
     updateStore(data);
     return data;
   },
+  setMesssage(message) {
+    data = {...data, message};
+    updateStore(data);
+    return data;
+  },
   resetSelectedItems(items) {
     for(let item of items) {
       delete data[item];

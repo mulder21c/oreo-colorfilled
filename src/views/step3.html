@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Oreo Colorfilled</title>
+</head>
+<body>
+  ${require('./partials/header.html')}
+  <div role="main" class="container">
+    <div class="container__inner">
+      <h2 class="container__subject container__subject--sub">
+        메세지를 전달하세요
+      </h2>
+      <div class="message">
+        <div class="canvas__container">
+          <div class="canvas__container--inner">
+            <img
+              class="canvas__layer canvas__layer--color-bg"
+              role="presentation"
+              alt="" >
+            <img
+              class="canvas__layer canvas__layer--color-groupa"
+              role="presentation"
+              alt="" >
+            <img
+              class="canvas__layer canvas__layer--color-groupb"
+              role="presentation"
+              alt="" >
+            <img
+              class="canvas__layer canvas__layer--color-groupc"
+              role="presentation"
+              alt="" >
+            <img
+              class="canvas__layer canvas__layer--sketch"
+              role="presentation"
+              alt="" >
+          </div>
+          <form class="message__form">
+            <label for="msg-to" class="message__to--label">To.</label>
+            <input
+              type="text"
+              id="msg-to"
+              name="msg-to"
+              class="message__to"
+              maxlength="6"
+              placeholder="받는이">
+            <label for="msg-body" class="message__body--label">내용.</label>
+            <textarea
+              name="msg-body"
+              id="msg-body"
+              class="message__body"
+              maxlength="50"
+              placeholder="내용을 입력하세요"></textarea>
+          </form>
+        </div>
+      </div>
+      <div class="navigator">
+        <a href="step2.html" class="btn btn--secondary">이전 단계</a>
+        <a href="complete.html" class="btn btn--primary next-step">완성</a>
+      </div>
+    </div>
+  </div>
+  ${require('./partials/footer.html')}
+</body>
+</html>
