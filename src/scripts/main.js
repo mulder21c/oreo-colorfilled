@@ -1,5 +1,5 @@
 import "../scss/index.scss";
-import "./carousel/assets/index.scss";
+import "./Carousel/assets/index.scss";
 import "Modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
 import "Modules/@fortawesome/fontawesome-free/scss/solid.scss";
 import Carousel from './Carousel';
