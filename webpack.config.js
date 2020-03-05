@@ -9,6 +9,7 @@ module.exports = {
     "script/step1": `./src/scripts/step1.js`,
     "script/step2": `./src/scripts/step2.js`,
     "script/step3": `./src/scripts/step3.js`,
+    "script/complete": `./src/scripts/complete.js`,
   },
   output: {
     path: path.join(__dirname, `dist`),
@@ -82,6 +83,10 @@ module.exports = {
       {
         from: `src/public/images`,
         to: `images`
+      },
+      {
+        from: `src/public/video`,
+        to: `video`
       }
     ]),
     new htmlWebpackPlugin({
@@ -122,6 +127,17 @@ module.exports = {
       chunks: ["script/step3"],
       template: path.join(__dirname, `src/views/step3.html`),
       filename: `step3.html`,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+      },
+    }),
+    new htmlWebpackPlugin({
+      inject: true,
+      chunks: ["script/complete"],
+      template: path.join(__dirname, `src/views/complete.html`),
+      filename: `complete.html`,
       minify: {
         removeComments: true,
         collapseWhitespace: true,

@@ -11,7 +11,10 @@ module.exports = api => {
       }
     ]
   ];
-  const plugins = [];
+  const plugins = [
+    "@babel/plugin-transform-runtime",
+    "syntax-async-functions",
+  ];
 
   return {
     presets,

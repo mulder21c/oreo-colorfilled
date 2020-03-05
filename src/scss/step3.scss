@@ -27,7 +27,7 @@
     position: absolute;
     top: 10px;
     left: 10px;
-    max-width: 640px;
+    max-width: $canvas-width;
     transform: scale(3) translate(-31.5%, 30%);
   }
 }
@@ -85,7 +85,7 @@
 
 .navigator {
   justify-content: space-between;
-  width: 640px + 20px;
+  width: $canvas-width + 20px;
 
   .btn {
     flex: 0.4 0 auto;

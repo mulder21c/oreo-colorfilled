@@ -1,0 +1,85 @@
+@import "helpers/mixins";
+@import "modules/variables";
+@import "modules/reset";
+@import "partials/layout";
+@import 'partials/elements';
+
+.video {
+  background-color: $white;
+  margin: 2rem auto;
+  padding: 10px;
+  border: 1px solid $gray;
+  width: $canvas-width;
+
+  &__player {
+    display: block;
+    width: 100%;
+  }
+}
+
+.oreo-code {
+  margin: 0 auto;
+  width: $canvas-width + 20px;
+
+  &__announce {
+    font-size: $text-large;
+    font-weight: 600;
+    text-align: center;
+    color: $primary-color;
+  }
+
+  &__copy-field {
+    margin: 2rem 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+  }
+  &__label {
+    flex: 0 0 auto;
+    background-color: $primary-color;
+    color: $white;
+    padding: 0 10px;
+    font-weight: 600;
+    font-size: $text-large;
+    height: $text-large * 2;
+    line-height: $text-large * 2;
+  }
+  &__textfield {
+    box-sizing: border-box;
+    flex: 1 0 auto;
+    border: 1px solid $primary-color;
+    padding: 0 10px;
+    font-size: $text-large;
+    height: $text-large * 2;
+    line-height: $text-large * 2;
+    color: darken($gray, 40);
+  }
+  &__copy-button {
+    box-sizing: border-box;
+    flex: 0 0 150px;
+    background-color: $primary-color;
+    font-weight: 800;
+    color: $white;
+
+    .copied {
+      margin-right: .5em;
+      transform: scale(1.25);
+      filter: drop-shadow(1px 1px 2px $black);
+
+      &--not {
+        transform: scale(1);
+        opacity: .5;
+        filter: none;
+      }
+    }
+
+    &:focus,
+    &:hover{
+      background-color: $accent-color;
+    }
+  }
+  &__guide {
+    font-size: $text-large * 0.85;
+    text-align: center;
+  }
+}

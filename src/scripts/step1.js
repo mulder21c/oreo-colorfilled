@@ -66,6 +66,7 @@ nextStepBtn.addEventListener(`click`, event => {
   store.setSelectedDesign(currIdx);
   if(currIdx > 1) {
     event.preventDefault();
+    store.setSelectedColor(null);
     location.href = `step3.html`;
   };
 }, false);

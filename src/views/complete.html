@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Oreo Colorfilled</title>
+</head>
+<body>
+  ${require('./partials/header.html')}
+  <div role="main" class="container">
+    <div class="container__inner">
+      <h2 class="container__subject container__subject--sub">
+        소중한 이에게 선물하세요
+      </h2>
+      <div class="video">
+        <video
+          src="/video/oreo_colorfilled.webm"
+          class="video__player"
+          autoplay
+          loop>
+          <p>
+            완성된 오레오 컬러필드 박스를 택배 포장하여 배송해드립니다.
+          </p>
+        </video>
+      </div>
+      <div class="oreo-code">
+        <p class="oreo-code__announce">
+          <span aria-hidden="true" class="far fa-check-circle"></span>
+          세상에서 단 하나뿐인 오레오 컬러필드 완성!
+        </p>
+        <div class="oreo-code__copy-field">
+          <label for="ored-code" class="oreo-code__label">
+            오레오 컬러필드 코드
+          </label>
+          <input
+            type="text"
+            name="oreo-code"
+            id="oreo-code"
+            class="oreo-code__textfield"
+            readonly
+            placeholder="코드 발급 중...">
+          <button
+            data-clipboard-target="#oreo-code"
+            class="oreo-code__copy-button"
+            type="button">
+            <span
+              class="fas fa-check copied copied--not" aria-hidden="true"></span>
+            복사
+          </button>
+        </div>
+        <p class="oreo-code__guide">
+          오레오 컬러필드 코드를 복사하여 [제품 구매 페이지]-[구매 옵션]에 입력해주시기 바랍니다.
+        </p>
+      </div>
+      <div class="navigator">
+        <a href="#" class="btn btn--primary">주문하기</a>
+      </div>
+    </div>
+  </div>
+  ${require('./partials/footer.html')}
+</body>
+</html>
