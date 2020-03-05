@@ -1,0 +1,27 @@
+language: node_js
+node_js:
+  - "lts/*"
+
+branches:
+  only:
+    - webpack
+
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH="$HOME/.yarn/bin:$PATH"
+
+install: yarn install
+
+cache:
+  directories:
+  - node_modules
+script:
+  - yarn build
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: dist
+  on:
+    branch: webpack
