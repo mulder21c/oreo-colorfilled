@@ -1,7 +1,7 @@
-@include font-face('NanumSqure', "/assets/fonts/NanumSquareL", 200);
-@include font-face('NanumSqure', "/assets/fonts/NanumSquareR", 400);
-@include font-face('NanumSqure', "/assets/fonts/NanumSquareB", 600);
-@include font-face('NanumSqure', "/assets/fonts/NanumSquareEB", 800);
+@include font-face('NanumSqure', "~Fonts/NanumSquareL", 200);
+@include font-face('NanumSqure', "~Fonts/NanumSquareR", 400);
+@include font-face('NanumSqure', "~Fonts/NanumSquareB", 600);
+@include font-face('NanumSqure', "~Fonts/NanumSquareEB", 800);
 
 h1,
 h2,

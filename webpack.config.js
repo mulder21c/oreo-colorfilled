@@ -13,7 +13,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, `dist`),
-    publicPath: `/`,
+    publicPath: `./`,
   },
   module: {
     rules: [
@@ -76,10 +76,6 @@ module.exports = {
   },
   plugins: [
     new copyPlugin([
-      {
-        from: `src/assets/fonts`,
-        to: `assets/fonts`
-      },
       {
         from: `src/public/images`,
         to: `images`
@@ -151,6 +147,7 @@ module.exports = {
       "@": path.resolve(__dirname, `./src`),
       "Images": path.resolve(__dirname, `./src/assets/images`),
       "Modules": path.resolve(__dirname, `./node_modules`),
+      "Fonts": path.resolve(__dirname, `./src/assets/fonts`),
     },
   },
   devtool: `inline-source-map`,
