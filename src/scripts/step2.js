@@ -64,16 +64,16 @@ const DrawColor = (el) => {
 
     switch (category) {
       case `bg`:
-        bgImg.src = `images/ct${design + 1}_bg_${Number(value)}.svg`;
+        bgImg.src = `images/ct${design + 1}_bg_${Number(value - 1)}.svg`;
         break;
       case `groupa`:
-        groupAImg.src = `images/ct${design + 1}_1_${Number(value)}.svg`;
+        groupAImg.src = `images/ct${design + 1}_1_${Number(value - 1)}.svg`;
         break;
       case `groupb`:
-        groupBImg.src = `images/ct${design + 1}_2_${Number(value)}.svg`;
+        groupBImg.src = `images/ct${design + 1}_2_${Number(value - 1)}.svg`;
         break;
       case `groupc`:
-        groupCImg.src = `images/ct${design + 1}_3_${Number(value)}.svg`;
+        groupCImg.src = `images/ct${design + 1}_3_${Number(value - 1)}.svg`;
         break;
     }
 
@@ -100,11 +100,20 @@ const DrawColor = (el) => {
     init(design) {
       loadDefaultSketches(design);
       for(let checkbox of checkboxes) {
+        // for IE refesh issue
+        setTimeout(() => {
+          checkbox.checked = false
+        }, 10);        
         checkbox.addEventListener(`change`, handleColorCheck.bind(null, design), false);
       }
     },
     highlightLayer(event) {
       const activated = event.detail.activateEl.id.replace(/draw\-|-legend/g, ``);
+      // for IE 
+      if (!Element.prototype.matches) {
+        Element.prototype.matches = Element.prototype.msMatchesSelector || 
+        Element.prototype.webkitMatchesSelector;
+      }
 
       for(let layer of sketchLayers) {
         if(layer.matches(`.canvas__layer--sketch-${activated}`) ) {

@@ -32,7 +32,7 @@ const Accordion = (() => {
       customEvent = new CustomEvent(event, params);
     } else {
       customEvent = document.createEvent('CustomEvent');
-      customEvent.initCustomEvent(event, false, false, params);
+      customEvent.initCustomEvent(event, true, true, params.detail);
     }
 
     el.dispatchEvent(customEvent);

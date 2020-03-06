@@ -23,7 +23,7 @@ const setIndicator = (el, {guideEl, guideDic}) => {
     el,
     sync(event) {
       const currIdx = event.detail.currentIdx;
-      const guild = document.createElement(`div`);
+      const guide = document.createElement(`div`);
       for(let i = -1, item; item = indicators[++i];){
         if(i == currIdx) item.classList.add(`slides__indicator__item--current`);
         else item.classList.remove(`slides__indicator__item--current`);
@@ -36,8 +36,8 @@ const setIndicator = (el, {guideEl, guideDic}) => {
       }
 
       if(guideEl.firstElementChild) guideEl.removeChild(guideEl.firstElementChild);
-      guild.innerHTML = guideDic[currIdx];
-      guideEl.append(guild);
+      guide.innerHTML = guideDic[currIdx];
+      guideEl.appendChild(guide);
     }
   }
 }

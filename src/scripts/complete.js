@@ -2,6 +2,7 @@ import "../scss/complete.scss";
 import "Modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
 import "Modules/@fortawesome/fontawesome-free/scss/regular.scss";
 import "Modules/@fortawesome/fontawesome-free/scss/solid.scss";
+import "core-js/modules/es.promise";
 import axios from "axios";
 import Clipboard from "clipboard";
 import store from "./Store";

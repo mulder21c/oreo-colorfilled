@@ -12,7 +12,14 @@ module.exports = api => {
     ]
   ];
   const plugins = [
-    "@babel/plugin-transform-runtime",
+    [
+      "@babel/plugin-transform-runtime",
+      { 
+        "corejs": 3,
+        "helpers": true,
+        "regenerator": true,
+      },
+    ],
     "syntax-async-functions",
   ];
 

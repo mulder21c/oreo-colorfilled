@@ -4,8 +4,8 @@ import "Modules/@fortawesome/fontawesome-free/scss/solid.scss";
 import store from './Store';
 
 const {design, colors} = store.getData([`design`, `colors`]);
-const nextStepBtn = document.querySelector(`.prev-step`);
-const prevStepBtn = document.querySelector(`.next-step`);
+const prevStepBtn = document.querySelector(`.prev-step`);
+const nextStepBtn = document.querySelector(`.next-step`);
 
 const MessageView = (el) => {
   if(!el) throw new Error(`MessageView's RootElement is not defined`);
@@ -19,10 +19,12 @@ const MessageView = (el) => {
 
   const loadLayers = ({design, colors}) => {
     sketchLayer.src= `images/ct${design + 1}_bg_0.svg`;
-    bgImg.src = `images/ct${design + 1}_bg_${colors.bg}.svg`;
-    groupAImg.src = `images/ct${design + 1}_1_${colors.groupa}.svg`;
-    groupBImg.src = `images/ct${design + 1}_2_${colors.groupb}.svg`;
-    groupCImg.src = `images/ct${design + 1}_3_${colors.groupc}.svg`;
+    if(colors){
+      bgImg.src = `images/ct${design + 1}_bg_${colors.bg}.svg`;
+      groupAImg.src = `images/ct${design + 1}_1_${colors.groupa}.svg`;
+      groupBImg.src = `images/ct${design + 1}_2_${colors.groupb}.svg`;
+      groupCImg.src = `images/ct${design + 1}_3_${colors.groupc}.svg`;
+    }
   }
 
 
@@ -44,11 +46,10 @@ const MessageView = (el) => {
 
 const message = MessageView(document.querySelector(`.message`));
 message.init({design, colors});
-
 prevStepBtn.addEventListener(`click`, event => {
   if(design > 1) {
     event.preventDefault();
-    location.href = `step2.html`;
+    location.href = `step1.html`;
   }
 }, false);
 nextStepBtn.addEventListener(`click`, event => {

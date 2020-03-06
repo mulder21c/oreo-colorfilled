@@ -89,6 +89,10 @@
   justify-content: space-between;
 
   .btn {
-    flex: 0.4 0 auto;
+    flex: 1 0 auto;
+
+    + .btn {
+      margin-left: 1rem;
+    }
   }
 }
