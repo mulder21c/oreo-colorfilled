@@ -17,48 +17,16 @@ const designGuide = [
 const carouselRoot = document.querySelector(`.select-design`);
 const nextStepBtn = document.querySelector(`.next-step`);
 
-const setIndicator = (el, {guideEl, guideDic}) => {
-  const indicators = el;
-  return {
-    el,
-    sync(event) {
-      const currIdx = event.detail.currentIdx;
-      const guide = document.createElement(`div`);
-      for(let i = -1, item; item = indicators[++i];){
-        if(i == currIdx) item.classList.add(`slides__indicator__item--current`);
-        else item.classList.remove(`slides__indicator__item--current`);
-
-        if(event.type == `init`)
-          item.addEventListener(`click`, (event) => {
-            const idx = Array.from(indicators).indexOf(event.currentTarget);
-            carousel.go(idx);
-          } ,false)
-      }
-
-      if(guideEl.firstElementChild) guideEl.removeChild(guideEl.firstElementChild);
-      guide.innerHTML = guideDic[currIdx];
-      guideEl.appendChild(guide);
-    }
-  }
-}
-
-const indicator = setIndicator(
-  document.querySelectorAll(`.slides__indicator__item`),
-  {
-    guideEl: document.querySelector(`.slides__indicator__desc`),
-    guideDic: designGuide,
-  }
-);
-
-carouselRoot.addEventListener(`init`, indicator.sync, false);
-carouselRoot.addEventListener(`changed`, indicator.sync, false);
-
 const carousel = new Carousel({
   root: carouselRoot,
   slide: document.querySelector(`.slides`),
   slideItems: document.querySelectorAll(`.slides__item`),
   prevBtn: document.querySelector(`.slides__controls__prev`),
   nextBtn: document.querySelector(`.slides__controls__next`),
+  liveRegion: document.querySelector(`.slides__indicator__desc`),
+  liveDictionary: designGuide,
+  indicatorRoot: document.querySelector(`.slides__indicator`),
+  indicators: document.querySelectorAll(`.slides__indicator__item`),
 });
 
 nextStepBtn.addEventListener(`click`, event => {
