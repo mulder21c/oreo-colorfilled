@@ -1,6 +1,7 @@
 const path = require(`path`);
 const htmlWebpackPlugin = require(`html-webpack-plugin`);
 const copyPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require(`mini-css-extract-plugin`);
 
 module.exports = {
   mode: `development`,
@@ -51,7 +52,7 @@ module.exports = {
         test: /\.(ttf|woff|woff2|eot)$/i,
         loader: `file-loader`,
         options: {
-          outputPath: 'assets/fonts',
+          outputPath: './assets/fonts',
           name: `[hash:16].[ext]`,
           esModule: false,
         },
@@ -59,7 +60,12 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         use: [
-          `style-loader`,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: `../`
+            }
+          },
           `css-loader`,
           `postcss-loader`,
           `sass-loader`
@@ -140,8 +146,15 @@ module.exports = {
         removeAttributeQuotes: true
       },
     }),
+    new MiniCssExtractPlugin({
+      filename: `css/[contenthash:16].css`
+    }),
   ],
-  optimization: {},
+  optimization: {
+    // runtimeChunk: {
+    //   name: "script/runtime",
+    // },
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, `./src`),
