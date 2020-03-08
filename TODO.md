@@ -1,5 +1,5 @@
 - [x] IE 10 Flexbox Layout issue 수정
 - [x] Carousel A11y (with WAI-ARIA)
-- [ ] Accordion A11y (with WAI-ARIA)
+- [x] Accordion A11y (with WAI-ARIA)
 - [ ] Webpack Extract CSS
 - [ ] Webpack Chunk Splitting

@@ -99,19 +99,21 @@ const DrawColor = (el) => {
   return {
     init(design) {
       loadDefaultSketches(design);
-      for(let checkbox of checkboxes) {
+      const colors = Object.values(colorList[design]).flat();
+      for(let i = -1, checkbox; checkbox = checkboxes[++i];) {
         // for IE refesh issue
         setTimeout(() => {
           checkbox.checked = false
-        }, 10);        
+        }, 10);
+        checkbox.nextElementSibling.setAttribute(`aria-label`, colors[i][`name`]);
         checkbox.addEventListener(`change`, handleColorCheck.bind(null, design), false);
       }
     },
     highlightLayer(event) {
       const activated = event.detail.activateEl.id.replace(/draw\-|-legend/g, ``);
-      // for IE 
+      // for IE
       if (!Element.prototype.matches) {
-        Element.prototype.matches = Element.prototype.msMatchesSelector || 
+        Element.prototype.matches = Element.prototype.msMatchesSelector ||
         Element.prototype.webkitMatchesSelector;
       }
 
@@ -139,7 +141,7 @@ accordionRoot.addEventListener(`selected`, drawColor.highlightLayer, false);
 const accordion = new Accordion({
   root: accordionRoot,
   tabs: document.querySelectorAll(`.coloring-accordion__tab`),
-  panels: document.querySelectorAll(`.coloring-accordion__panel`),
+  panels: document.querySelectorAll(`.coloring-accordion__panel .coloring__list`),
   activeClass: `active`,
 });
 
