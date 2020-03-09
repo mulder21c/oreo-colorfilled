@@ -2,6 +2,7 @@ const path = require(`path`);
 const htmlWebpackPlugin = require(`html-webpack-plugin`);
 const copyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require(`mini-css-extract-plugin`);
+const {cleanWebpackPlugin} = require(`clean-webpack-plugin`);
 
 module.exports = {
   mode: `development`,
@@ -149,6 +150,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: `css/[contenthash:16].css`
     }),
+    new cleanWebpackPlugin(),
   ],
   optimization: {
     // runtimeChunk: {
