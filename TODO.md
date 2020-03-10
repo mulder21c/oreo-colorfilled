@@ -2,4 +2,4 @@
 - [x] Carousel A11y (with WAI-ARIA)
 - [x] Accordion A11y (with WAI-ARIA)
 - [x] Webpack Extract CSS
-- [ ] Webpack Chunk Splitting
+- [x] Webpack Chunk Splitting
